@@ -1,0 +1,50 @@
+body{
+    width: 100%;
+    height: 800px;
+}
+
+.background 
+{
+    height: 100%;
+    width: 100%;
+    background-color: aquamarine;
+}
+.background .header
+{
+    display: flex;
+    height: 5%;
+    width: 100%;
+    background-color: aliceblue;
+}
+.background .header ul
+{
+    margin: auto;
+    width: 80%;
+    height: 100%;
+    list-style-type: none;
+    background-color:burlywood;
+  
+}
+.background .header ul li 
+{
+    width: 20%;
+    height: 100%;
+    display: inline;
+    font-size: 25px;
+    margin-right: 50px;
+}
+.background .header ul li a {
+    text-decoration: none;
+    margin-top: 10px;
+}
+.background .main
+{
+    width: 100%;
+    height: 85%;
+}
+.background .footer
+{
+    width: 100%;
+    height: 10%;
+    background-color: black;
+}

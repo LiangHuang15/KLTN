@@ -1,0 +1,97 @@
+body
+{
+    height: 800px; 
+    width:  100%;
+}
+.background
+{
+    background-color:black;
+    height: 100%; 
+    width:  100%;
+    display: flex;
+    justify-content: center;
+}
+.background .container
+{
+    height: 80%;
+    width: 40%;
+    background-color: white;
+    margin: auto;
+    display: flex;
+}
+.background .container .content
+{
+    height: 90%;
+    width: 80%;
+    background-color: aquamarine;
+    margin: auto;
+    border-radius: 10px;
+
+}
+.background .container .content form
+{
+    height: 100%;
+    width: 100%; 
+}
+.background .container .content form .title
+{
+    margin-top: 0px;
+    height: 30%;
+    width: 100%;
+    background-color:yellowgreen;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    display: flex;
+}
+.background .container .content form .title .content_title
+{
+    width: 70%;
+    height: 50%;
+    margin: auto;
+
+}
+.background .container .content form .form
+{
+    height: 40%;
+    width: 100%;
+    background-color: rgb(19, 1, 1);
+    display : flex;
+}
+.background .container .content form .form .content_form
+{
+    height: 80%;
+    width: 80%;
+    margin: auto; 
+}
+.background .container .content form .form .content_form 
+{
+    height: 100%;
+    width: 100%;
+}
+.background .container .content  form .form .content_form input
+{
+    height: 30%;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color:aliceblue ;
+    font-size: 20px;
+    border: none;
+}
+.background .container .content form .button
+{
+    height: 30%;
+    width: 100%;
+    background-color:greenyellow;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+}
+
+.background .container .content form .button .button_content
+{
+    height: 70%;
+    width: 90%;
+    margin: auto;
+    background-color: brown;
+}
