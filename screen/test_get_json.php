@@ -9,7 +9,7 @@
     </head>
     <body>
         <?php
-            $string = file_get_contents("/Applications/XAMPP/xamppfiles/htdocs/recommender_system/output.json");
+            $string = file_get_contents("/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json");
             $result = json_decode($string, true);
             for($i = 0 ; $i < count($result['movie_title'])  ; $i++)
             {
@@ -26,7 +26,7 @@
             }
         ?>
         <?php
-            // include('/Applications/XAMPP/xamppfiles/htdocs/recommender_system/php-simple/src/simplehtmldom_1_5/simple_html_dom.php');
+            // include('/Applications/XAMPP/xamppfiles/htdocs/KLTN/php-simple/src/simplehtmldom_1_5/simple_html_dom.php');
             // $search_keyword = str_replace('','+',$result['movie_title'][1]);
             // $newhtml = file_get_html("https://www.google.com/search?q=".$search_keyword." &tbm=isch");
             // $result_image_source= $newhtml -> find('img',0) -> src;

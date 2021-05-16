@@ -12,7 +12,7 @@ from pandas import DataFrame
 # import requests
 # app = Flask(__name__)
 
-# @app.route('/Applications/XAMPP/xamppfiles/htdocs/recommender_system/matrix_1m.py', methods=['POST'])
+# @app.route('/Applications/XAMPP/xamppfiles/htdocs/KLTN/matrix_1m.py', methods=['POST'])
 # def form_data():
 #     data = request.form['user_form']
 #     print(data)
@@ -26,7 +26,7 @@ from pandas import DataFrame
 
 import json
 # data_form = open('./data.json',)
-data_form = open('/Applications/XAMPP/xamppfiles/htdocs/recommender_system/data.json',)
+data_form = open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json',)
 data_temp = json.load(data_form)
 user = data_temp['user_form']
 print('user_id login:',user)
@@ -40,7 +40,7 @@ pd.set_option('display.max_columns',5)
 # import data movielen
 cols = ["user_id", "item_id", "rating", "timestamp"]
 # movie_data = pd.read_csv("ml-1m/ratings.dat",names=cols, sep="::", usecols=[0,1,2], engine="python")
-movie_data = pd.read_csv("/Applications/XAMPP/xamppfiles/htdocs/recommender_system/ml-1m/ratings.dat",names=cols, sep="::", usecols=[0,1,2], engine="python")
+movie_data = pd.read_csv("/Applications/XAMPP/xamppfiles/htdocs/KLTN/ml-1m/ratings.dat",names=cols, sep="::", usecols=[0,1,2], engine="python")
 X = movie_data[["user_id", "item_id"]]
 y = movie_data["rating"]
 (
@@ -96,25 +96,25 @@ name = ["movie_id", "movie_title","genres"]
 # # data_items = pd.read_csv("ml-1m/movies.dat",names=name,sep='::', engine="python")
 
 
-# data_items = pd.read_csv("/Applications/XAMPP/xamppfiles/htdocs/recommender_system/ml-1m/movies.dat",names=name,sep='::', engine="python")
+# data_items = pd.read_csv("/Applications/XAMPP/xamppfiles/htdocs/KLTN/ml-1m/movies.dat",names=name,sep='::', engine="python")
 
 
 import pymysql 
 conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
 cursor = conn.cursor()
 movies_table = pd.read_sql_query("select * from movies",conn)
-data_items=movies_table[['MovieID','Title','Genres']]
+data_items=movies_table[['MovieID','Title','Genres','url']]
 # print('data_items:',data_items)
 # print('data_items:',movies_table)
 
 
 
-output_data = pd.merge(left=output,right=data_items,left_on='item_id',right_on='movie_id',how='inner')
+output_data = pd.merge(left=output,right=data_items,left_on='item_id',right_on='MovieID',how='inner')
 print('output_data:',output_data)
 
 
 
-output_cols =output_data[["user_id", "item_id","movie_title","genres"]]
-output_result = DataFrame(output_cols,columns=['user_id','item_id','movie_title','genres'])
+output_cols =output_data[["user_id", "item_id","Title","Genres","url"]]
+output_result = DataFrame(output_cols,columns=['user_id','item_id','Title','Genres','url'])
 print(output_result)
-output_result.to_json (r'/Applications/XAMPP/xamppfiles/htdocs/recommender_system/output.json')
+output_result.to_json (r'/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json')

@@ -268,11 +268,7 @@
 				</div>
 				<!-- connect mysql -->
 				<?php
-					$serverName = "localhost";
-					$userName = "root";
-					$password = "";
-					$dbName = "movielens";
-					$conn = mysqli_connect($serverName, $userName, $password, $dbName);
+					
 					
 				?>
 				<!--  get data json from python --> 
@@ -282,29 +278,34 @@
 				?>
 				
 				<div class="flex-wrap-movielist">
-					<?php
-						$string = file_get_contents("/Applications/XAMPP/xamppfiles/htdocs/recommender_system/output.json");
+				<?php
+
+						$serverName = "localhost";
+						$userName = "root";
+						$password = "";
+						$dbName = "movielens";
+						$conn = mysqli_connect($serverName, $userName, $password, $dbName);
+						$string = file_get_contents("/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json");
 						$result = json_decode($string, true);
-						$movie_title=$result['movie_title'];
-						for($i = 0 ; $i < count($result['movie_title'])  ; $i++)
+						// $return=$result['url'];
+						// echo'
+						// 	<img src="'.$return.'">  
+						// ';
+						for($i = 0 ; $i < count($result['Title'])  ; $i++)
 						{
-							$sql = "select * from movies where Title= $movie_title[$i]";
-							$return = $conn->query($sql);
-							echo '';
-						}
-						
-						echo'
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="$return.img" alt="">
-							<div class="hvr-inner">
-	            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">oblivion</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+							echo'
+							<div class="movie-item-style-2 movie-item-style-1">
+								<img src="'.$result['url'][$i].'" alt="">
+								<div class="hvr-inner">
+									<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+								</div>
+								<div class="mv-item-infor">
+									<h6><a href="#">'.$result['Title'][$i].'</a></h6>
+									<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
+								</div>
 							</div>
-						</div>
-						'	
+							'	;
+						}
 					?>	
 						<!--				
 						<div class="movie-item-style-2 movie-item-style-1">

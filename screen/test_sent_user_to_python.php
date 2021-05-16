@@ -17,37 +17,22 @@
         <input type="submit" name="submit" id="submit" value="submit"></button>
     </form>
 
-
+  
 
 <?php
+
 if(isset($_POST['submit'])) {
     $file = "../data.json";
+    $file="/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json";
     $arr = array(
         'user_form'     => $_POST['user_form'],
         'password'    => $_POST['password'],
     );
+    echo $_POST['user_form'];
     $json_string = json_encode($arr);
     file_put_contents($file, $json_string);
     // echo $json_string;
 }
 ?>
-<?php
-    if(isset($_POST['submit']))
-    {
-        // $command = escapeshellcmd('/usr/bin/python3 /Applications/XAMPP/xamppfiles/htdocs/recommender_system/test_print.py');
-        // // $command = escapeshellcmd('/usr/bin/python3 /Applications/XAMPP/xamppfiles/htdocs/recommender_system/matrix_1m.py');
-        // $output = shell_exec($command);
-
-        // echo "1";
-        // $output = shell_exec("bash /Users/phannhan/Desktop/script");
-        // print_r($output);
-       
-
-
-
-        // $output = shell_exec('/usr/bin/python3 /Applications/XAMPP/xamppfiles/htdocs/recommender_system/test_print.py');
-            $output = shell_exec('bash /Users/phannhan/Desktop/script');
-        echo '<pred>'.$output.'</pre>'; 
-    }
-?> 
-</html>
+</body>
+</html> 

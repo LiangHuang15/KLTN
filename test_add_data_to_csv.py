@@ -7,4 +7,4 @@ def append_list_as_row(file_name,list_of_elem,lineterminator='\n'):
         csv_writer.writerow(list_of_elem)
     
 row_contents = [6,"Toy Story (1995)","Animation|Children's|Comedy"]
-append_list_as_row('/Applications/XAMPP/xamppfiles/htdocs/recommender_system/ml-1m/movies_adddata.dat ', row_contents)
+append_list_as_row('/Applications/XAMPP/xamppfiles/htdocs/KLTN/ml-1m/movies_adddata.dat ', row_contents)

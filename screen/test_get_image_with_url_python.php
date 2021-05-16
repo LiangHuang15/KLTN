@@ -9,7 +9,7 @@
 <body>
     <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdNRTRZfRaN1HMNrsif3lrz9Gynwzc70XYO37or_rubBOP-_aI-ZrDXwgCHKL6yYTLDcE&usqp=CAU"> -->
     <?php
-        $command = escapeshellcmd('/usr/bin/python3 /Applications/XAMPP/xamppfiles/htdocs/recommender_system/test_get_url_image.py'); 
+        $command = escapeshellcmd('/usr/bin/python3 /Applications/XAMPP/xamppfiles/htdocs/KLTN/test_get_url_image.py'); 
         $output = shell_exec($command);
         echo 'success';
     ?>

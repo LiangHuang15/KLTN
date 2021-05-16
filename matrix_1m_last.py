@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 columns = ['user_id', 'item_id', 'rating', 'timestamp']
 pd.set_option('display.max_rows',1000000)
-movie_length = pd.read_csv('/Applications/XAMPP/xamppfiles/htdocs/recommender_system/ml-1m/ratings.dat', header = 0, names = columns, sep = '::', engine = 'python')
+movie_length = pd.read_csv('/Applications/XAMPP/xamppfiles/htdocs/KLTN/ml-1m/ratings.dat', header = 0, names = columns, sep = '::', engine = 'python')
 movie_length = movie_length.sort_values(['user_id', 'item_id'])
 print(movie_length)
 
