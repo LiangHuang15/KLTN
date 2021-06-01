@@ -3,6 +3,7 @@ from matrix_factorization import BaselineModel, KernelMF, train_update_test_spli
 import pandas as pd 
 from sklearn.metrics import mean_squared_error
 from pandas import DataFrame
+import pymysql
 ###########################################################################
 # test send data from form to python
 
@@ -117,4 +118,23 @@ print('output_data:',output_data)
 output_cols =output_data[["user_id", "item_id","Title","Genres","url"]]
 output_result = DataFrame(output_cols,columns=['user_id','item_id','Title','Genres','url'])
 print(output_result)
+
+#get value it row 0 
+print('id :' ,output_result.loc[0,'user_id'])
+print('movie_id :',output_result.loc[0,'item_id'])
+
+
+
 output_result.to_json (r'/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json')
+
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+# sql = "insert into recommend (MovieID,Title,Genres,url) values (%s,%s,%s,%s)"
+# cursor.execute(sql,(int(output_result.loc[0,'user_id']),output_result.loc[0,'Title'],output_result.loc[0,'Genres'],output_result.loc[0,'url']))
+for i in range(0,9,1):
+    try:
+        sql = "insert into recommend (MovieID,UserID,Title,Genres,url) values (%s,%s,%s,%s,%s)"
+        cursor.execute(sql,(int(output_result.loc[i,'item_id']),int(output_result.loc[i,'user_id']),output_result.loc[i,'Title'],output_result.loc[i,'Genres'],output_result.loc[i,'url']))
+    except:
+        print('error')
+conn.commit()
