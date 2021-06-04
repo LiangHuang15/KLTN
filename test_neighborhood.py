@@ -1,5 +1,6 @@
 import pandas as pd 
 import numpy as np
+from sklearn.model_selection import train_test_split
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy import sparse 
 class CF(object):
@@ -16,7 +17,7 @@ class CF(object):
     
     def add(self, new_data):
         """
-        Update Y_data matrix when new ratings come.
+        Update Y_data matrix when new Ratings come.
         For simplicity, suppose that there is no new user or item.
         """
         # ghép mảng axis = 0 đưa giá trị của mảng ghép vào đưa vào cuối 
@@ -27,25 +28,26 @@ class CF(object):
         self.Ybar_data = self.Y_data.copy()
         self.mu = np.zeros((self.n_users,))
         for n in range(self.n_users):
-            # row indices of rating done by user n
+            # row indices of Rating done by user n
             # since indices need to be integers, we need to convert
             ids = np.where(users == n)[0].astype(np.int32)
-            # indices of all ratings associated with user n
-            item_ids = self.Y_data[ids, 1] 
-            # and the corresponding ratings 
-            ratings = self.Y_data[ids, 2]
+            # indices of all Ratings associated with user n
+            MovieIDs = self.Y_data[ids, 1] 
+            # and the corresponding Ratings 
+            Ratings = self.Y_data[ids, 2]
             # take mean
-            m = np.mean(ratings) 
+
+            m = np.mean(Ratings) 
             if np.isnan(m):
                 m = 0 # to avoid empty array and nan value
             self.mu[n] = m
             # normalize
-            self.Ybar_data[ids, 2] = ratings - self.mu[n]
+            self.Ybar_data[ids, 2] = Ratings - self.mu[n]
 
         ################################################
-        # form the rating matrix as a sparse matrix. Sparsity is important 
+        # form the Rating matrix as a sparse matrix. Sparsity is important 
         # for both memory and computing efficiency. For example, if #user = 1M, 
-        # #item = 100k, then shape of the rating matrix would be (100k, 1M), 
+        # #item = 100k, then shape of the Rating matrix would be (100k, 1M), 
         # you may not have enough memory to store this. Then, instead, we store 
         # nonzeros only, and, of course, their locations.
         self.Ybar = sparse.coo_matrix((self.Ybar_data[:, 2],
@@ -60,7 +62,7 @@ class CF(object):
     def refresh(self):
         """
         Normalize data and calculate similarity matrix again (after
-        some few ratings added)
+        some few Ratings added)
         """
         self.normalize_Y()
         self.similarity() 
@@ -71,7 +73,7 @@ class CF(object):
     
     def __pred(self, u, i, normalized = 1):
         """ 
-        predict the rating of user u for item i (normalized)
+        predict the Rating of user u for item i (normalized)
         if you need the un
         """
         # Step 1: find all users who rated i
@@ -95,7 +97,7 @@ class CF(object):
     
     def pred(self, u, i, normalized = 1):
         """ 
-        predict the rating of user u for item i (normalized)
+        predict the Rating of user u for item i (normalized)
         if you need the un
         """
         if self.uuCF: return self.__pred(u, i, normalized)
@@ -114,8 +116,8 @@ class CF(object):
         recommended_items = []
         for i in range(self.n_items):
             if i not in items_rated_by_u:
-                rating = self.__pred(u, i)
-                if rating > 0: 
+                Rating = self.__pred(u, i)
+                if Rating > 0: 
                     recommended_items.append(i)
         
         return recommended_items 
@@ -133,8 +135,8 @@ class CF(object):
     
         for i in range(self.n_items):
             if i not in items_rated_by_u:
-                rating = self.__pred(u, i)
-                if rating > 0: 
+                Rating = self.__pred(u, i)
+                if Rating > 0: 
                     recommended_items.append(i)
         
         return recommended_items 
@@ -151,22 +153,55 @@ class CF(object):
             else: 
                 print ('    Recommend item', u, 'for user(s) : ', recommended_items)
 
-r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
 
-ratings_base = pd.read_csv('ml-100k/ub.base', sep='\t', names=r_cols, encoding='latin-1')
-ratings_test = pd.read_csv('ml-100k/ub.test', sep='\t', names=r_cols, encoding='latin-1')
+
+import pymysql 
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+Ratings_table = pd.read_sql_query("select * from Ratings",conn)
+# data_items=Ratings_table[['UserID','MovieID','Rating','timestamp']]
+data_items=Ratings_table[['UserID','MovieID','Rating','Timestamp']]
+# print('data_items',data_items)
+
+#______________________________________________________
+
+X= data_items[['UserID','MovieID','Rating']]
+print('data',X)
+X_train, X_test= train_test_split(X,test_size = 0.2)
+#______________________________________________________
 
 pd.set_option('display.max_rows',1000000)
 pd.set_option('display.max_columns',5)
-rate_train = ratings_base.values
-rate_test = ratings_test.values
-print('rate1',rate_train)
-print('rate2',rate_test)
+# print('X train',X_train.sort_values(by=['UserID']))
+# print('X test',X_test.sort_values(by=['UserID']))
+
+
+
+
+
+#______________________________________________________
+
+Ratings_base=X_train.sort_values(by=['UserID'])
+Ratings_test=X_test.sort_values(by=['UserID'])
+
+rate_train = Ratings_base.values
+rate_test = Ratings_test.values
+#______________________________________________________
+
+
 # indices start from 0
 rate_train[:, :2] -= 1
 rate_test[:, :2] -= 1
-print('rate_train',rate_train[:, :2])
-print('rate_test',rate_test[:, :2])
+
+
+#______________________________________________________
+print('train',rate_train)
+print('test',rate_test)
+#______________________________________________________
+
+
+
+
 rs = CF(rate_train, k = 30, uuCF = 1)
 rs.fit()
 
@@ -178,6 +213,12 @@ for n in range(n_tests):
 
 RMSE = np.sqrt(SE/n_tests)
 print ('User-user CF, RMSE =', RMSE)
+
+
+
+
+
+
 
 
 # rs = CF(rate_train, k = 30, uuCF = 0)
