@@ -13,6 +13,7 @@ $(window).on('load', function() { // makes sure the whole site is loaded
 		} 
 	}
 })
+
 $(function(){
 	'use strict';
 	// js for dropdown menu
@@ -564,5 +565,6 @@ $(function(){
 	// $(window).on('load',function() {
 
 	// });
+	
 
 });
