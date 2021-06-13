@@ -26,7 +26,7 @@
 	    		</div>
 				<div class="movie-item">
 	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/5/5d/Sudden_Death_%281995_film_poster%29.jpg" alt="" width="auto" height="437"!important></a>
 	    			</div>
 	    			<div class="title-in">
 	    				<div class="cate">
@@ -60,90 +60,7 @@
 	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
 	    			</div>
 	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue"><a href="#">Animation</a></span>
-	    				</div>
-	    				<h6><a href="#">Toys story</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
+
 				<!-- End load rồi -->
 	    	</div>
 	    </div>
