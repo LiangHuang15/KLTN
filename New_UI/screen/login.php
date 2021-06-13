@@ -36,16 +36,17 @@
               <p class="mb-4">Đăng nhập để khám phá thêm nhiều bộ phim hấp dẫn</p>
             </div>
             <form action="#" method="post">
-              <div class="form-group first">
-                <label for="username">Tài khoản</label>
-                <input type="text" class="form-control" id="username">
+              <div class="form-group first mb-2 rounded-top">
+                <label class="ml-2" for="username">Tài khoản</label>
+                <input type="text" class="form-control ml-2" id="username">
 
               </div>
-              <div class="form-group last mb-4">
-                <label for="password">Mật khẩu</label>
-                <input type="password" class="form-control" id="password">
+              <div class="form-group last mb-2">
+                <label class="ml-2" for="password">Mật khẩu</label>
+                <input type="password" class="form-control ml-2" id="password">
                 
               </div>
+
               
               <div class="d-flex mb-5 align-items-center">
                 <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ tài khoảm</span>
@@ -57,7 +58,7 @@
               </div>
 
               <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary">
-<span class="ml-auto"><a href="signIn.php" class="forgot-pass">Đăng ký</a></span> 
+<span class="ml-auto"><a href="register.php" class="forgot-pass">Đăng ký</a></span> 
 <span class="ml-auto float-right"><a href="index.php" class="forgot-pass">Bỏ qua</a></span>
 
               </div>
