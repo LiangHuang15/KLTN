@@ -46,6 +46,7 @@
                 <input type="password" class="form-control" name="password" id="password">
                 
               </div>
+
               
               <div class="d-flex mb-5 align-items-center">
                 <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ tài khoảm</span>
@@ -57,7 +58,7 @@
               </div>
 
               <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary">
-<span class="ml-auto"><a href="signIn.php" class="forgot-pass">Đăng ký</a></span> 
+<span class="ml-auto"><a href="register.php" class="forgot-pass">Đăng ký</a></span> 
 <span class="ml-auto float-right"><a href="index.php" class="forgot-pass">Bỏ qua</a></span>
 
               </div>
