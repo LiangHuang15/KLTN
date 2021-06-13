@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/carousel.css">
     <link rel="stylesheet" href="../css/search_bar.css">
+    
+    <link rel="stylesheet" href="../css/css_grid/style_grid.css">
     <!-- search bar -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <title>Demo Website</title>
