@@ -59,11 +59,15 @@
 
 
 </script> 
-<script>
+<script>    
             function newpage(clicked_id){
            $temp  = clicked_id;
+        var abc = 'abc';
+        var bcd = 'bcd';
+        
             var querystring=document.getElementById($temp).innerText;
             // var querystring ='mothaiba';
+           
             localStorage.setItem("storageName",querystring);
             window.location.href = "./product_detail.php" ;
             // window.open("https://www.w3schools.com");

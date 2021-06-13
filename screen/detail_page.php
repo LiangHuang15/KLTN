@@ -12,24 +12,50 @@
 		</div>
 	</div>
 </div>
+
+
+
 <div class="page-single movie-single movie_single">
 	<div class="container">
+		
+		
 		<div class="row ipad-width2">
-			<div class="col-md-4 col-sm-12 col-xs-12">
-				<div class="movie-img sticky-sb">
-					<img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="">
-					<div class="movie-btn">	
-						<div class="btn-transform transform-vertical red">
-							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Xem Trailer</a></div>
-							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
-						</div>
-						<div class="btn-transform transform-vertical">
-							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Xem phim</a></div>
-							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+			<?php
+				//id pass from home 
+				$id = $_GET['id'];
+				echo $id;
+				include './conn.php';
+				$connect=conn();
+				$temp = $id;
+				$sql=" select * from movies where MovieID=$id";
+				$result = mysqli_query($connect, $sql);
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_assoc($result)) 
+					{
+						echo'
+				
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="movie-img sticky-sb">
+							<img src="'.$row["url"].'" alt="">
+							<div class="movie-btn">	
+								<div class="btn-transform transform-vertical red">
+									<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Xem Trailer</a></div>
+									<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+								</div>
+								<div class="btn-transform transform-vertical">
+									<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Xem phim</a></div>
+									<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+			';
+					}
+				}else {
+					echo "0 results";
+				}	
+				mysqli_close($connect);	
+			?>
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
 					<h1 class="bd-hd">Toy stoty <span> 2007 - current</span></h1>
@@ -422,6 +448,11 @@
 				</div>
 			</div>
 		</div>
+
+
+
+
+
 	</div>
 </div>
 <?php include("footer.php");?>

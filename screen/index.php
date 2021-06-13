@@ -1,202 +1,22 @@
-<?php
-        session_start();
-        if(isset($_SESSION['UserID']) && isset($_SESSION['password']))
-        {
-?>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homepage</title>
-</head>
-<body>
-
-    <p>user_<?php echo $_SESSION['UserID']?></p>
-    <a href="logout.php">Logout</a>
-</body>
-</html> -->
-
-
-<!-- load home with recommend --> 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<?php 
-// include("header.php"); 
- ?>
-
-
-
-
-
-
-
- <!DOCTYPE html>
-
-<html lang="en" class="no-js">
-
-<head>
-	<!-- Basic need -->
-	<title>Khóa luận</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<link rel="profile" href="#">
-
-    <!--Google Font-->
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
-	<!-- Mobile specific meta -->
-	<meta name=viewport content="width=device-width, initial-scale=1">
-	<meta name="format-detection" content="telephone-no">
-
-	<!-- CSS files -->
-	<link rel="stylesheet" href="../css/plugins.css">
-	<link rel="stylesheet" href="../css/style.css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body>
-<!--preloading-->
-
-<div id="preloader">
-    <img class="logo" src="../images/logo1.png" alt="" width="119" height="58">
-    <div id="status">
-        <span></span>
-        <span></span>
-    </div>
-</div>
-<!--end of preloading-->
-
-<!--signup form popup-->
-<div class="login-wrapper"  id="signup-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>Đăng ký</h3>
-        <form method="post" action="#">
-            <div class="row">
-                 <label for="username-2">
-                    Tài khoản:
-                    <input type="text" name="username" id="username-2" placeholder="Nhập tài khoản" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-            </div>
-           
-            <div class="row">
-                <label for="email-2">
-                    Email:
-                    <input type="email" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="password-2">
-                    Mật khẩu:
-                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="repassword-2">
-                    Nhập lại mật khẩu:
-                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-           <div class="row">
-             <button type="submit">Đăng ký ngay</button>
-           </div>
-        </form>
-    </div>
-</div>
-<!--end of signup form popup-->
-
-<!-- BEGIN | Header -->
-<header class="ht-header">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">Toggle navigation</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <a href="home.php"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-						<li class="dropdown first">
-							<a href="home.php" >Trang chính</a>
-						</li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							Thể loại<i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Hành động<i class="ion-ios-arrow-forward"></i></a>
-									<ul class="dropdown-menu level2">
-										<li><a href="#">Hành động nhẹ</a></li>
-										<li><a href="#">Hành động mạnh</a></li>
-									</ul>
-								</li>			
-								<li><a href="#">Khoa học viễn tưởng</a></li>
-								<li><a href="#">Tâm lý</a></li>
-								<li class="it-last"><a href="#">Kinh dị</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">          
-						<li><a href="#">Về chúng tôi</a></li>
-						<li ><a href="logout.php">Đăng Xuất</a></li>
-						<li> <p>Xin chào user_<?php echo $_SESSION['UserID']?></p></li>
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
-	    
-	    <!-- top search form -->
-	    <!-- <div class="top-search">
-	    	<select>
-				<option value="united">Phim</option>
-				<option value="saab">Thể loại</option>
-			</select>
-			<input type="text"  name="search_text" id="search_text" placeholder="Hãy nhập tên phim bạn muốn tìm . . ." class="form-control">
-			<br />
-    		<div style="background:white;" id="result"></div>  
-	    </div> -->
-		<div class="top-search">
-			<input  type="text" name="search_text" id="search_text" placeholder="Search by name" class="form-control" />
-			<div style="background:white;"id="result"></div>  
-	    </div>
-	</div>
-</header>
-<!-- END | Header -->
-
-
-
-
-
-
-
-
+<?php include("header.php");  ?>
+<?php
+    if(isset($_GET['error'])) {?>
+        <p class="error" style="background: #F2DEDE;color: #A94442;border-radius:5px;"><?php echo $_GET["error"]; ?> </p>
+    <?php
+    }
+    ?>
+	<?php
+    if(isset($_GET['success'])) {?>
+        <p class="success" style="background: #F2DEDE;color: #A94442;border-radius:5px;"><?php echo $_GET["success"]; ?> </p>
+    <?php
+    }
+    ?>
 <div class="slider movie-items">
 	<div class="container">
 		<div class="row">
@@ -235,7 +55,139 @@
 						  }	
 						  mysqli_close($connect);					  		
 					?>
-	    		
+	    		<!-- <div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div>
+				<div class="movie-item">
+	    			<div class="mv-img">
+	    				<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="285" height="437"></a>
+	    			</div>
+	    			<div class="title-in">
+	    				<div class="cate">
+	    					<span class="blue"><a href="#">Animation</a></span>
+	    				</div>
+	    				<h6><a href="#">Toys story</a></h6>
+	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+	    			</div>
+	    		</div> -->
+				<!-- End load rồi -->
 	    	</div>
 	    </div>
 	</div>
@@ -511,7 +463,9 @@
 					</div>
 				</div>
 			</div>
-			<?php include("sidebar.php");?>
+			<?php
+			 include("sidebar.php");
+			?>
 
 		</div>
 	</div>
@@ -529,15 +483,3 @@ include("footer.php");
 	}
 </script>	
 <script>window.scrollTo(0,0);</script>
-
-
-
-
-
-<?php
-}
-else{
-    header("Location: index.php");
-    exit();
-}
-?> 

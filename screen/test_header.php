@@ -21,10 +21,6 @@
 	<link rel="stylesheet" href="../css/plugins.css">
 	<link rel="stylesheet" href="../css/style.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 <!--preloading-->
@@ -40,20 +36,21 @@
 <!--login form popup-->
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
+       
         <a href="#" class="close">x</a>
         <h3>Đăng nhập</h3>
-        <form method="post" action="login.php">
+        <form method="post" >
         	<div class="row">
         		 <label for="username">
                     Tên đăng nhập:
-                    <input type="text" name="username" id="username" placeholder="Nhập ID"  required="required" />
+                    <input type="text" name="username" id="username" placeholder="Nhập ID" />
                 </label>
         	</div>
            
             <div class="row">
             	<label for="password">
                     Mật khẩu:
-                    <input type="password" name="password" id="password" placeholder="******"  required="required" />
+                    <input type="password" name="password" id="password" placeholder="******" />
                 </label>
             </div>
             <div class="row">
@@ -65,9 +62,10 @@
             	</div>
             </div>
            <div class="row">
-           	 <button type="submit">Đăng nhập</button>
+           	 <button type="submit" >Đăng nhập</button>
            </div>
         </form>
+        
         <div class="row">
         	<p>Đăng nhập bằng:</p>
             <div class="social-btn-2">
@@ -83,45 +81,30 @@
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>Đăng ký</h3>
-        <form method="post" action="signup_check.php">
+        <form method="post" action="#">
             <div class="row">
-                 <label for="username_2">
+                 <label for="username-2">
                     Tài khoản:
-                    <input type="text" name="username_2" id="username_2" placeholder="Nhập tài khoản" required="required" />
+                    <input type="text" name="username1" id="username-2" placeholder="Nhập tài khoản" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                </label>
+            </div>
+           
+            <div class="row">
+                <label for="email-2">
+                    Email:
+                    <input type="email" name="email1" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
                 </label>
             </div>
              <div class="row">
-                <label for="genres" >
-                    Giới tính:
-					<input style="width:50%;height:100%;"type="radio" id="male" name="gender" value="M">
-					<label style="width:50%;"  for="male">Male</label><br>
-                    <input type="radio" id="female" name="gender" value="F">
-					<label for="female">Female</label><br>
-					
-                </label>
-            </div>
-			<div class="row">
-                <label for="password_2">
+                <label for="password-2">
                     Mật khẩu:
-                    <input type="password" name="password_2" id="password_2" placeholder=""  required="required" />
-                </label>
-            </div>
-			<div class="row">
-                <label for="password_2">
-                    Mật khẩu:
-                    <input type="password" name="password_2" id="password_2" placeholder=""  required="required" />
-                </label>
-            </div>
-			<div class="row">
-                <label for="password_2">
-                    Mật khẩu:
-                    <input type="password" name="password_2" id="password_2" placeholder=""  required="required" />
+                    <input type="password" name="password1" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
                 </label>
             </div>
              <div class="row">
-                <label for="password_3">
+                <label for="repassword-2">
                     Nhập lại mật khẩu:
-                    <input type="password" name="password_3" id="password_3" placeholder=""  required="required" />
+                    <input type="password" name="password1" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
                 </label>
             </div>
            <div class="row">
@@ -185,64 +168,52 @@
 	    </nav>
 	    
 	    <!-- top search form -->
-	    <!-- <div class="top-search">
+	    <div class="top-search">
 	    	<select>
 				<option value="united">Phim</option>
 				<option value="saab">Thể loại</option>
 			</select>
-			<input type="text"  name="search_text" id="search_text" placeholder="Hãy nhập tên phim bạn muốn tìm . . ." class="form-control">
-			<br />
-    		<div style="background:white;" id="result"></div>  
-	    </div> -->
-		<div class="top-search">
-			<input  type="text" name="search_text" id="search_text" placeholder="Search by name" class="form-control" />
-			<div style="background:white;"id="result"></div>  
+			<input type="text" placeholder="Hãy nhập tên phim bạn muốn tìm . . .">
 	    </div>
 	</div>
 </header>
 <!-- END | Header -->
 
-
-
-<script>
-    $(document).ready(function(){
-
-        load_data();
-
-        function load_data(query)
-        {
-            $.ajax({
-            url:"fetch.php",
-            method:"POST",
-            data:{query:query},
-            success:function(data)
+<?php
+          
+            if(isset($_POST['username']) && isset($_POST['password']))
             {
-                $('#result').html(data);
+
+                include './conn.php';
+                $connect=conn();
+                function validate($data){
+                    $data = trim($data);
+                    $data = stripslashes($data);
+                    $data = htmlspecialchars($data);
+                    return $data;
+                }
+                $name= validate($_POST['username']);
+                $pass= validate($_POST['password']);
+                if (empty($name))
+                {
+                    echo '<script>alert("Username is required")</script>';
+                    exit();
+                }
+                elseif (empty($pass))
+                {
+                    echo '<script>alert("password is required")</script>';
+                    exit();
+                }
+                else{
+                    // $sql= "	SELECT * FROM users WHERE password=md5('$pass') and UserID =$name" ;
+                    // $result = mysqli_query($connect,$sql);
+                    // if(mysqli_num_rows($result)){
+                        echo 'hello';
+                    // }
+                } 
             }
-            });
-
-        }
-        $('#search_text').keyup(function(){
-            var search = $(this).val();
-            if(search != '')
-            {
-                load_data(search);
-            }
-            else
-            {
-                load_data();
-            }
-            });
-    });
-
-
-
-</script> 
-<script>   
-
-            function newpage(clicked_id){
-           $temp  = clicked_id;
-		   values = $temp
-			window.location.href = "detail_page.php?id="+values;
-            }
-</script>   
+            // else{
+            //     header("Location: test_header.php");
+            //     exit();
+            // }
+        ?>

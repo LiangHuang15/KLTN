@@ -10,12 +10,12 @@ if(isset($_POST["query"]))
     select * from movies where Title like '%$search%' or Genres like '%$search%'
     ";
 }
-else
-{
-    $query = "
-    SELECT * FROM movies ORDER BY MovieID limit 10
-    ";
-}
+// else
+// {
+//     $query = "
+//     SELECT * FROM movies ORDER BY MovieID limit 10
+//     ";
+// }
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0)
 {

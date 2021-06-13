@@ -1,7 +1,29 @@
+
 <div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="sidebar">
                 <div class="celebrities">
 						<h4 class="sb-title">Thịnh hành</h4>
+						<?php
+							// include './conn.php';
+							// $connect=conn();
+							// $sql=" SELECT * FROM movies ORDER by MovieID desc limit 4";
+							// $result = mysqli_query($connect, $sql);
+							// if (mysqli_num_rows($result) > 0) {
+							// while($row = mysqli_fetch_assoc($result)) 
+							// {
+							// 	echo '<div class="celeb-item">
+							// 	<a href="#"><img src="'.$row["url"].'" alt="" width="70" height="70"></a>
+							// 	<div class="celeb-author">
+							// 		<h6><a href="#">'.$row["Title"].'</a></h6>
+							// 		<span>Actor</span>
+							// 		<p class="rate"><i class="ion-android-star" style="color: #f5b50a; margin-right: 5px;" ></i><span> 8.1</span> /10</p>
+							// 	</div>
+							// </div>';
+							// }
+							// }else {
+							// 	echo "0 results";
+							// }	
+						?>
 						<div class="celeb-item">
 							<a href="#"><img src="https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg" alt="" width="70" height="70"></a>
 							<div class="celeb-author">
