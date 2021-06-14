@@ -1,6 +1,6 @@
 <?php
         session_start();
-        if(isset($_SESSION['UserID']) && isset($_SESSION['password']))
+        if(isset($_SESSION['UserID']) && isset($_SESSION['Username']))
         {
 			header("Location: home.php");
 			exit();
@@ -23,13 +23,13 @@
     ?>
 
 <?php include("header.php") ?>
-
+<!-- <div style="margin-left:15%;width:60%;z-index:998;position:absolute;background:white;" id="result"></div>   -->
 <!-- Start Carousel  -->
-<section class="ftco-section full-width">
+<section onclick="hide_search()" class="ftco-section full-width">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="featured-carousel owl-carousel ">
+						<div id="owl-carousel" class="featured-carousel owl-carousel ">
 
 						<?php
 							include './conn.php';
@@ -67,15 +67,15 @@
     <script src="../js/carouseljs/main.js"></script>
 
 <!-- End Carousel -->
-<!-- Show list movie -->
-<div class="page-single">
+<!-- Show list all movie -->
+<div onclick="hide_search()" class="page-single">
 	<div class="container">
 		<div id="dynamic_content" class="row" style="display:flex;width:100%;height: 900px;">
 			<!-- load  item -->
 		</div>
 	</div>
 </div>
-<!-- End -->
+<!-- End Show list all movie -->
 <?php include("footer.php") ?>
 <!-- load pagination -->
 <script>
@@ -106,13 +106,35 @@
 </script>
 <!-- end load pagination -->
 
+
 <!-- onclick genres  -->
 
 <script>
 function newpage(clicked_id)
 {
   $temp  = clicked_id;
-  window.location.href = "fetch_genres.php?id="+$temp;
+  // window.location.href = "fetch_genres.php?id="+$temp;
+
+
+  function load_data(query)
+  {
+    $.ajax({
+    url:"fetch_genres.php",
+    method:"POST",
+    data:{query:query},
+    success:function(data)
+    {
+        $('#owl-carousel').html(data);
+    }
+    });
+
+  }
+  load_data($temp)
+
+  $(document).ready(function(){
+    load_data();
+});
+
 }
 </script>	
 <!-- end onclick genres  -->
@@ -126,7 +148,64 @@ function detail(clicked_id)
   window.location.href = "detail_page.php?id="+$temp;
 }
 </script>	
-<!-- end onclick genres  -->
+<!-- end onclick detail  -->
+
+
+<!-- event search -->
+  
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query)
+  {
+      $.ajax({
+      url:"fetch_search.php",
+      method:"POST",
+      data:{query:query},
+      success:function(data)
+      {
+          var x = document.getElementById("result");
+          x.style.display = "block";
+          $('#result').html(data);
+      }
+      });
+
+  }
+  $('.search-input').keyup(function(){
+      var search = $(this).val();
+      if(search != '')
+      {
+          load_data(search);
+      }
+      else
+      {
+          load_data();
+      }
+      });
+});
+
+</script> 
+<!-- end event search -->
+
+<!-- click hide search  -->
+<script>
+function hide_search() {
+  var x = document.getElementById("result");
+    x.style.display = "none";
+}
+</script>
+<!--  end click hide search  -->
+
+
+<!-- event genres -->
+<script>
+
+</script> 
+<!-- end event genres -->
+
+
 
 <?php
 }

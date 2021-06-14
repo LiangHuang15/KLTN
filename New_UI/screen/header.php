@@ -25,14 +25,16 @@
     <title>Demo Website</title>
 
   </head>
-  <body>
-    <div class="site-mobile-menu site-navbar-target">
+  <body >
+      <div class="site-mobile-menu site-navbar-target">
         <div class="site-mobile-menu-header">
           <div class="site-mobile-menu-close mt-3">
             <span class="icon-close2 js-menu-toggle"></span>
           </div>
         </div>
-        <div class="site-mobile-menu-body"></div>
+        <div class="site-mobile-menu-body">
+
+        </div>
       </div>
 
 
@@ -60,7 +62,7 @@
         </div>
       </div>
 
-      <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+      <header onclick="hide_search()" class="site-navbar js-sticky-header site-navbar-target" role="banner">
 
         <div class="container">
           <div class="row align-items-center position-relative">
@@ -76,7 +78,7 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li  class="div_search" >
           
-                    <form class="search-bar-form"action="">
+                    <form class="search-bar-form">
                       <input class="search-input" type="search">
                       <i class="fa fa-search icon-search-fa"></i>
                     </form>
@@ -123,6 +125,25 @@
         </div>
 
       </header>
+      <div style="margin-left:15%;overflow-x:hidden;overflow-y:scroll;width:60%;z-index:100;position:fixed;background:white;" id="result"></div>  
 
-  
+      
+
+      <script>
+// When the user scrolls down 50px from the top of the document, resize the header's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    document.getElementById("result").style.top = "90px";
+    document.getElementById("result").style.overflow = scroll;
+  } else {
+    document.getElementById("result").style.top = "110px";
+    document.getElementById("result").style.overflow = scroll;
+  }
+}
+</script>
+
+
+
 

@@ -1,6 +1,6 @@
 <?php
         session_start();
-        if(isset($_SESSION['UserID']) && isset($_SESSION['password']))
+        if(isset($_SESSION['UserID']) && isset($_SESSION['Username']))
         {
 ?>
 
@@ -117,7 +117,7 @@
                   </li>
                   <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
                   <li class="has-children">
-                    <a href="#about-section" class="nav-link">Xin chào <?php echo $_SESSION['UserID'] ?></a>
+                    <a href="#about-section" class="nav-link">Xin chào <?php echo $_SESSION['Username'] ?></a>
                     <ul class="dropdown arrow-top">
                       <li><a href="logout.php" class="nav-link">Đăng xuất</a></li>
                     </ul>

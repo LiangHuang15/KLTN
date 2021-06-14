@@ -9,10 +9,12 @@
             $data = htmlspecialchars($data);
             return $data; 
         }
-     
         $username=$_POST['Name'];
         // $date=date("Y",$_POST['date']);
         $date=$_POST['date'];
+        $curent_year=date('Y');
+        $year = date('Y', strtotime($date));
+        $age=$curent_year - $year;
         $jobtitle=$_POST['jobtitle'];
         $gender=$_POST['gender'];
         $password=$_POST['password'];
@@ -39,29 +41,31 @@
             exit();
         }else
         {
-            // $sql="select * from users where UserID= $username";
-            // $result = mysqli_query($connect, $sql);
-            // if(mysqli_num_rows($result) > 0)
-            // {
-            //     header("Location: register.php?error=The username is taken try by another");
-            //     exit();
-            // }else
-            // {
-            //     $sql1="insert into users (UserID,Gender,Age,password) values ($username,$gender,,md5($password))";
-            //     $result1 = mysqli_query($connect, $sql1);
-            //     if($result1)
-            //     {
-            //         header("Location: index.php?success=Your account has been created successfully");
-            //         exit();
-            //     }
-            //     else {
-            //         header("Location: index.php?error= not created account");
-            //         exit();
-            //     }
-            // }
-            $year = date('Y', strtotime($date));
-            echo  $year;
+            $sql="select * from users where Username= '$username'";
+            $result = mysqli_query($connect, $sql);
+            if(mysqli_num_rows($result) > 0)
+            {
+                header("Location: register.php?error=The username is taken try by another");
+                exit();
+            }else
+            {
+                $sql1="call insert_user('$username','$gender','$age','$jobtitle','$password')";
+                $result1 = mysqli_query($connect, $sql1);
+                if($result1)
+                {
+                    header("Location: login.php?success=Your account has been created successfully");
+                    exit();
+                }
+                else {
+                    header("Location: register.php?error= not created account");
+                    exit();
+                }
+            }
         }
-
+    }
+    else
+    {
+        header("Location: login.php");
+        exit();
     }
 ?>

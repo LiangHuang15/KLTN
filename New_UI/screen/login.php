@@ -62,7 +62,7 @@
 
               
               <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ tài khoảm</span>
+                <label class="control control--checkbox mb-0"><span class="caption">Ghi nhớ tài khoản</span>
                   <input type="checkbox" checked="checked"/>
                   <div class="control__indicator"></div>
                 </label>

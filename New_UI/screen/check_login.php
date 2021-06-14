@@ -30,31 +30,34 @@
             exit();
         }else
         {
-            
-            $sql="call check_login('$username','$password')";
+
+            // $sql="call check_login($username,$password)";
+            $sql="select * from  users where Username = '$username' and password=md5($password)";
             $result = mysqli_query($connect, $sql);
             if(mysqli_num_rows($result) === 1){
+           
                 $row = mysqli_fetch_assoc($result);
-                if($row['UserID'] === $username && $row['password']=== md5($password))
+                if($row['Username'] == $username )
                 {
                    $_SESSION['UserID'] = $row['UserID'];
-                   $_SESSION['password'] = $row['password'];
-                   if(isset($_SESSION['UserID']) ){
-                    header("Location: home.php");
-                    exit();
-                   }
-                  
+                   $_SESSION['Username'] = $row['Username'];
+                   header("Location: home.php");
+                   exit();
                 } 
             }
+   
+
             else{
                 header("Location: login.php?error=Incorect username or password");
                 exit();
+                
                 // header("Location: login.php");
                 // echo 'alert("Incorect username or password")';
                 // exit(); 
 
                
             }
+    
         }
     }
     else
