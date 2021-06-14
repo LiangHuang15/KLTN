@@ -34,7 +34,7 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form action="check_register.php" method="post">
                 <div class="row">
 
                     <!-- First Name -->
@@ -54,7 +54,7 @@
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="date" type="date" name="date" placeholder="Ngày sinh" class="form-control bg-white border-left-0 border-md">
+                        <input id="date" type="date" name="date" placeholder="Năm sinh" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                   
@@ -102,7 +102,7 @@
                                 <i class="fa fa-black-tie text-muted"></i>
                             </span>
                         </div>
-                        <select id="Name" name="Name" class="form-control custom-select bg-white border-left-0 border-md">
+                        <select id="genres" name="gender" class="form-control custom-select bg-white border-left-0 border-md">
                         <option value="">Giới tính</option>
                             <option value="M">Nam</option>
                             <option value="F">Nữ</option>
@@ -126,14 +126,15 @@
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder=" Nhập lại" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder=" Nhập lại" class="form-control bg-white border-left-0 border-md">
                     </div>
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-4">
-                        <a href="#" class="btn btn-primary btn-block py-2">
+                       <input style="width:100%;height:150%;border-radius:5px;background:rgb(0,108,210);" type="submit" value="Tạo tài khoản"></input>
+                        <!-- <a   class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Tạo tài khoản</span>
-                        </a>
+                        </a> -->
                     </div>
 
                     <!-- Already Registered -->

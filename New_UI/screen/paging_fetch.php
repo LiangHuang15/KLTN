@@ -42,24 +42,24 @@ if($total_data > 0)
   foreach($result as $row)
   {
     $output .= '
-    <div  style="width:20%;height:400px;margin-top:0px;position:relative;display:flex;">
-    <div style ="height: 98%;width:96%;position:absolute;margin-left:2%;margin-top:1%;"class="image">
-      <a href="#" style ="height: 100%;width:100%;">
-        <img src="'.$row["url"].'" class="w-100" style="position: relative;height: 100%;width:100%;">
-          <div style="width:100%;height:100%;position: absolute; bottom:0px;background-image:linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.2));border-radius:10px;">
-            <div style="position: absolute; height: 20%; width:100%; bottom: 0px;left:5px; border-radius:10px;display:flex;">
-              <div style="width:100%;height:100%;position:relative;display:block;">
-                <p style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["Title"].'</p>
-                <p  style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["Genres"].'</p>
-                <p style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["avg_ratings"].'/5</p>
+    <div id="'.$row["MovieID"].'" onclick="detail(this.id)" style="width:20%;height:400px;margin-top:0px;position:relative;display:flex;">
+      <div style ="height: 98%;width:96%;position:absolute;margin-left:2%;margin-top:1%;"class="image">
+        <a href="#" style ="height: 100%;width:100%;">
+          <img src="'.$row["url"].'" class="w-100" style="position: relative;height: 100%;width:100%;">
+            <div style="width:100%;height:100%;position: absolute; bottom:0px;background-image:linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.2));border-radius:10px;">
+              <div style="position: absolute; height: 20%; width:100%; bottom: 0px;left:5px; border-radius:10px;display:flex;">
+                <div style="width:100%;height:100%;position:relative;display:block;">
+                  <p style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["Title"].'</p>
+                  <p  style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["Genres"].'</p>
+                  <p style="color:rgb(255, 255, 255);width:100%;margin-top:0px;margin: 0px 0;">'.$row["avg_ratings"].'/5</p>
+                </div>
               </div>
             </div>
+          </img>
+          <div class="overlay">
+            <div style="text-align:center;"class="detail">View Details</div>
           </div>
-        </im>
-        <div class="overlay">
-          <div class="detail">View Details</div>
-        </div>
-      </a>
+        </a>
     </div>
   </div>
 
@@ -145,7 +145,7 @@ for($count = 0; $count < count($page_array); $count++)
     $previous_id = $page_array[$count] - 1;
     if($previous_id > 0)
     {
-      $previous_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$previous_id.'">Previous</a></li>';
+      $previous_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$previous_id.'">Về trước</a></li>';
     }
     else
     {
@@ -166,7 +166,7 @@ for($count = 0; $count < count($page_array); $count++)
     }
     else
     {
-      $next_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$next_id.'">Next</a></li>';
+      $next_link = '<li class="page-item"><a class="page-link" href="javascript:void(0)" data-page_number="'.$next_id.'">Tiếp theo</a></li>';
     }
   }
   else

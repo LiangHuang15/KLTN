@@ -82,26 +82,36 @@
                     </form>
                       
                 </li> 
-                <li><a href="#home-section" class="nav-link">Trang chính</a></li>
+                <li><a href="home.php" class="nav-link">Trang chính</a></li>
                   
-                  <li class="has-children">
+                  <li  class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#team-section" class="nav-link">Khoa học</a></li>
-                      <li><a href="#pricing-section" class="nav-link">Tình cảm</a></li>
-                      <li><a href="#faq-section" class="nav-link">Chinh thám</a></li>
-                      <li class="has-children">
-                        <a href="#">More Links</a>
-                        <ul class="dropdown">
-                          <li><a href="#">Menu One</a></li>
-                          <li><a href="#">Menu Two</a></li>
-                          <li><a href="#">Menu Three</a></li>
-                        </ul>
-                      </li>
+                      <li><a  id="Action"  onclick="newpage(this.id)">Phim hành động</a></li>
+                      <li><a  id="Adventure"  onclick="newpage(this.id)">Phim phiêu lưu</a></li>
+                      <li><a  id="Animation"  onclick="newpage(this.id)">Phim hoạt hình</a></li>
+                      <li><a  id="Children's" onclick="newpage(this.id)">Phim dành cho trẻ em </a></li>
+                      <li><a  id="Comedy" onclick="newpage(this.id)">Phim hài hước</a></li>
+                      <li><a  id="Crime" onclick="newpage(this.id)">Phim hình sự </a></li>
+                      <li><a  id="Documentary" onclick="newpage(this.id)">Phim tài liệu</a></li>
+                      <li><a  id="Drama" onclick="newpage(this.id)">Phim hài</a></li>
+                      <li><a  id="Fantasy" onclick="newpage(this.id)">Phim viễn tưởng</a></li>
+                      <li><a  id="Film-Noir" onclick="newpage(this.id)">Phim tội phạm Hollywood</a></li>
+                      <li><a  id="Horror" onclick="newpage(this.id)">Phim kinh dị (ma)</a></li>
+                      <li><a  id="Musical" onclick="newpage(this.id)">Phim âm nhạc</a></li>
+                      <li><a  id="Mystery" onclick="newpage(this.id)">Phim thần bí</a></li>
+                      <li><a  id="Romance" onclick="newpage(this.id)">Phim tình cảm</a></li>
+                      <li><a  id="Sci-Fi" onclick="newpage(this.id)">Phim khoa học viễn tưởng</a></li>
+                      <li><a  id="Thriller" onclick="newpage(this.id)">Phim kinh dị</a></li>
+                      <li><a  id="War" onclick="newpage(this.id)">Phim chiến tranh</a></li>
+                      <li><a  id="Western" onclick="newpage(this.id)">Phim viễn tây</a></li>
+
                     </ul>
                   </li>
                   <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
-                  <li class="btn-login" ><a href="login.php" class="nav-link">Đăng nhập</a></li>
+                  <li class="btn-login" ><a href="login.php" id="login" class="nav-link " >Đăng nhập</a></li>
+
+                  
                 </ul>
               </nav>
 
@@ -116,5 +126,3 @@
 
   
 
-
-   

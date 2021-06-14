@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>check_login</title>
 </head>
 <body>
     <?php
@@ -30,6 +30,7 @@
             exit();
         }else
         {
+            
             $sql="call check_login('$username','$password')";
             $result = mysqli_query($connect, $sql);
             if(mysqli_num_rows($result) === 1){
@@ -38,12 +39,15 @@
                 {
                    $_SESSION['UserID'] = $row['UserID'];
                    $_SESSION['password'] = $row['password'];
-                   header("Location: home.php");
-                   exit();
+                   if(isset($_SESSION['UserID']) ){
+                    header("Location: home.php");
+                    exit();
+                   }
+                  
                 } 
             }
             else{
-                header("Location: index.php?error=Incorect username or password");
+                header("Location: login.php?error=Incorect username or password");
                 exit();
                 // header("Location: login.php");
                 // echo 'alert("Incorect username or password")';

@@ -19,6 +19,19 @@
     <title>Login #7</title>
   </head>
   <body>
+    <?php
+        if(isset($_GET['error'])) {?>
+          <p class="error" style="background: #F2DEDE;color: #A94442;border-radius:5px;"><?php echo $_GET["error"]; ?> </p>
+      <?php
+      }
+      ?>
+    <?php
+      if(isset($_GET['success'])) {?>
+          <p class="success" style="background: #F2DEDE;color: #A94442;border-radius:5px;"><?php echo $_GET["success"]; ?> </p>
+      <?php
+      }
+      ?>
+
   
 
   
