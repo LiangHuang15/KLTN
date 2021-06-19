@@ -32,8 +32,9 @@
          </div>
      </div>
  </footer>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/carousel.js"></script>
+    <!-- <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/carousel.js"></script> -->
+    <script src="../js/carousel_new/carousel.js"></script>
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.sticky.js"></script>
@@ -42,3 +43,27 @@
 
   </body>
 </html>
+<!-- onclick detail  -->
+
+<script>
+function detail(clicked_id)
+{
+  $temp  = clicked_id;
+  window.location.href = "detail.php?id="+$temp;
+}
+</script>	
+<!-- end onclick detail  -->
+
+<!-- onclick genres  -->
+
+<script>
+
+    function newpage(clicked_id)
+    {
+      $temp  = clicked_id;
+      window.location.href = "genres.php?id="+$temp;
+
+    }
+
+</script>	
+<!-- end onclick genres  -->

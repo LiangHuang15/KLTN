@@ -34,9 +34,9 @@ if(mysqli_num_rows($result) > 0)
         $num = $row[0];
         $output .= '
         <tr >
-                <td><img style="height:50px;width:50px;"src="'.$row["url"].'"></img></td>
-                <td id="'.$num.'" onclick=newpage(this.id)>'.$row["Title"].'</td>
-                <td>'.$row["Genres"].'</td>
+                <td><img id="'.$num.'" onclick=detail(this.id) style="height:50px;width:50px;"src="'.$row["url"].'"></img></td>
+                <td id="'.$num.'" onclick=detail(this.id)>'.$row["Title"].'</td>
+                <td id="'.$num.'" onclick=detail(this.id)>'.$row["Genres"].'</td>
  
         </tr>
         ';

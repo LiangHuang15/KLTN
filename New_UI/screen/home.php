@@ -22,6 +22,7 @@
     
     <!-- Style -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lightslider.css">
     <link rel="stylesheet" href="../css/carousel.css">
     <link rel="stylesheet" href="../css/search_bar.css">
     
@@ -66,7 +67,7 @@
         </div>
       </div>
 
-      <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+      <header onclick="hide_search();" class="site-navbar js-sticky-header site-navbar-target" role="banner">
 
         <div class="container">
           <div class="row align-items-center position-relative">
@@ -92,8 +93,8 @@
                   
                   <li class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
-                    <ul class="dropdown arrow-top">
-					<li><a  id="Action"  onclick="newpage(this.id)">Phim hành động</a></li>
+                    <ul class="dropdown arrow-top" style="height:400px;">
+				            	<li><a  id="Action"  onclick="newpage(this.id)">Phim hành động</a></li>
                       <li><a  id="Adventure"  onclick="newpage(this.id)">Phim phiêu lưu</a></li>
                       <li><a  id="Animation"  onclick="newpage(this.id)">Phim hoạt hình</a></li>
                       <li><a  id="Children's" onclick="newpage(this.id)">Phim dành cho trẻ em </a></li>
@@ -135,53 +136,57 @@
         </div>
 
       </header>
-
+      <div style="margin-left:15%;overflow-x:hidden;overflow-y:scroll;width:60%;z-index:100;position:fixed;background:white;" id="result"></div> 
   
 
-<!-- Start Carousel  -->
-<section class="ftco-section full-width">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="featured-carousel owl-carousel">
-						<?php
-							include './conn.php';
-							$connect=conn();
-							$sql=" select * from movies ORDER by avg_ratings DESC LIMIT 10";
-							$result = mysqli_query($connect, $sql);
-							if (mysqli_num_rows($result) > 0) {
-							while($row = mysqli_fetch_assoc($result))
-							{
-								echo '<div class="item " id="'.$row["MovieID"].'" onclick="detail(this.id)">
-								<div class="work ">
-									<div class="img d-flex align-items-end justify-content-center" style="background-image: url('.$row["url"].');">
-										<div class="text w-100">
-											<span class="cat">'.$row["Genres"].'</span>
-                                            <h3><a href="#">'.$row["Title"].'</a></h3>
-                                            <i class="fas fa-star" style="color:yellow"><h5>'.$row["avg_ratings"].'/5</h5></i>
-										</div>
-									</div>
-								</div>
-							</div>';
-							}
-						}else {
-							echo "0 results";
-						  }	
-						  mysqli_close($connect);					  		
-						?>
-                           
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-    <script src="../js/carouseljs/jquery.min.js"></script>
-    <script src="../js/carouseljs/owl.carousel.min.js"></script>
-    <script src="../js/carouseljs/main.js"></script>
+<script type="text/javascript" src="../js/carousel_new/JQuery3.3.1.js"></script>
+<script type="text/javascript" src="../js/carousel_new/lightslider.js"></script>
+<div style="margin-top:0px;padding:0px;">
 
-<!-- End Carousel -->
+	
+      <div class="container_carousel">
+		<!--slider------------------->
+		<ul id="autoWidth" class="cs-hidden">
+		
+		<?php
+		include './conn.php';
+		$connect=conn();
+		$sql=" select * from movies ORDER by avg_ratings DESC LIMIT 6";
+		$result = mysqli_query($connect, $sql);
+		if (mysqli_num_rows($result) > 0) {
+		while($row = mysqli_fetch_assoc($result))
+		{
+			echo '<li class="item-a">
+			<!--slider-box-->
+				<div id="'.$row["MovieID"].'" onclick=detail(this.id) style="background-image: url('.$row["url"].');" class="box_carousel">
+				<p class="marvel">'.$row["Title"].'</p>
+				<!--model-->
+				<!-- <img src="img/Ant-Man.png" class="model"> -->
+				<!--details-->
+				<div class="details_carousel">
+					<span class="cat">'.$row["Genres"].'</span>
+					<i class="fas fa-star" style="color:yellow"><h5>'.$row["avg_ratings"].'/5</h5></i>
+				
+					<p>Bruce Bayne invite deadpool to kill the enemy how make distrub bat To the Kill The Anymens How MaKE him will be ie.</p>
+				</div>
+				
+				</div>
+		</li>';
+		}
+		}else {
+			echo "0 results";
+		}	
+		mysqli_close($connect);					  		
+		?>
+		</ul>
+
+	</div>
+
+</div>
+
+
 <!-- Show list movie -->
-<div class="page-single">
+<div onclick="hide_search();" class="page-single">
 	<div class="container">
 		<div id="dynamic_content" class="row" style="display:flex;width:100%;height: 800px;">
 			
@@ -223,13 +228,42 @@
 
 <!-- onclick genres  -->
 
+
+<!-- 
 <script>
-function newpage(clicked_id)
-{
-  $temp  = clicked_id;
-  window.location.href = "fetch_genres.php?id="+$temp;
-}
-</script>	
+   $(document).ready(function(){
+    newpage();
+    });
+    function newpage(clicked_id)
+    {
+      $temp  = clicked_id;
+      // window.location.href = "fetch_genres.php?id="+$temp;
+
+
+      function load_data(query)
+      {
+        $.ajax({
+        url:"fetch_genres.php",
+        method:"POST",
+        data:{query:query},
+        success:function(data)
+        {
+            $('#autoWidth').html(data);
+        }
+        });
+
+      }
+      load_data($temp)
+
+    //   $(document).ready(function(){
+    //     load_data();
+    // });
+    }
+
+</script>	 -->
+
+
+
 <!-- end onclick genres  -->
 
 
@@ -239,10 +273,81 @@ function newpage(clicked_id)
 function detail(clicked_id)
 {
   $temp  = clicked_id;
-  window.location.href = "detail_page.php?id="+$temp;
+  window.location.href = "detail.php?id="+$temp;
 }
 </script>	
 <!-- end onclick genres  -->
+
+
+<!-- event search -->
+  
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query)
+  {
+      $.ajax({
+      url:"fetch_search.php",
+      method:"POST",
+      data:{query:query},
+      success:function(data)
+      {
+          var x = document.getElementById("result");
+          x.style.display = "block";
+          $('#result').html(data);
+      }
+      });
+
+  }
+  $('.search-input').keyup(function(){
+      var search = $(this).val();
+      if(search != '')
+      {
+          load_data(search);
+      }
+      else
+      {
+          load_data();
+      }
+      });
+});
+
+</script> 
+<!-- end event search -->
+
+<!-- click hide search  -->
+<script>
+function hide_search() {
+  var x = document.getElementById("result");
+    x.style.display = "none";
+}
+</script>
+<!--  end click hide search  -->
+<!-- click hide search  -->
+<script>
+function hide_search() {
+  var x = document.getElementById("result");
+    x.style.display = "none";
+}
+</script>
+<!--  end click hide search  -->
+
+<script>
+// When the user scrolls down 50px from the top of the document, resize the header's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 50) {
+    document.getElementById("result").style.top = "95px";
+    document.getElementById("result").style.overflow = scroll;
+  } else {
+    document.getElementById("result").style.top = "120px";
+    document.getElementById("result").style.overflow = scroll;
+  }
+}
+</script>
 
 
 

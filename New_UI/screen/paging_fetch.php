@@ -151,7 +151,7 @@ for($count = 0; $count < count($page_array); $count++)
     {
       $previous_link = '
       <li class="page-item disabled">
-        <a class="page-link" href="#">Previous</a>
+        <a class="page-link" href="#">Về trước</a>
       </li>
       ';
     }
@@ -160,7 +160,7 @@ for($count = 0; $count < count($page_array); $count++)
     {
       $next_link = '
       <li class="page-item disabled">
-        <a class="page-link" href="#">Next</a>
+        <a class="page-link" href="#">Tiếp theo</a>
       </li>
         ';
     }
