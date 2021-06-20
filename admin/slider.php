@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
+{
+    $admin=$_SESSION["Username_admin"];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +35,7 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -444,7 +454,8 @@
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600">John Ducky</h6>
+                                        
+                                            <h6 class="mb-0 text-gray-600"><?php echo $admin?></h6>
                                             <p class="mb-0 text-sm text-gray-600">Administrator</p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
@@ -473,3 +484,6 @@
                     </div>
                 </nav>
             </header>
+<?php
+        }
+?>

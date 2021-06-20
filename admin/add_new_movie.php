@@ -1,4 +1,17 @@
 <?php include("slider.php");?>
+<?php
+      if(isset($_GET['success'])) {?>
+          <p class="success" style="background: white;color:rgb(115,201,145) ;border-radius:5px;"><?php echo $_GET["success"]; ?> </p>
+      <?php
+      }
+      ?>
+<?php
+      if(isset($_GET['error'])) {?>
+          <p class="success" style="background: #F2DEDE;color:#A94442;border-radius:5px;"><?php echo $_GET["error"]; ?> </p>
+      <?php
+      }
+      ?>
+    
 
 <div class="page-heading d-flex">
                 <h3>Thêm phim mới</h3>
@@ -11,7 +24,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body">
-                                    <form class="form form-vertical">
+                                    <form class="form form-vertical" action="insert_movie.php" method="post" id="ajax1" name="ajax1">
                                         <div class="row d-block">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group row align-items-center">
@@ -22,13 +35,16 @@
                                                     <input type="text" id="movie-name" class="form-control" name="fname"
                                                         placeholder="Tên phim">
                                                 </div>
+                                                <input style="display: none" type="text" id="result_select" class="form-control" name="result_select">
+                                                <input style="display: none" type="text" id="result_image" class="form-control" name="result_image">
+                                                <input style="display: none" type="text" id="result_video" class="form-control" name="result_video">
                                             </div>
                                         </div>
                                             <div class="col-md-6 mb-4">
                                                 <h6>Thể loại</h6>
                                                 <div class="form-group">
                                                     <select class="choices form-select multiple-remove"
-                                                        multiple="multiple" >
+                                                        multiple="multiple" id="pets" name="multiple" >
                                                         
                                                             <option value="Action" >Action</option>
                                                             <option value="Adventure">Adventure</option>
@@ -57,23 +73,116 @@
                                                     <div class="card-content">
                                                         <div class="card-body">
                                                             <!-- Auto filter image file uploader -->
-                                                            <input type="file" class="image-filter-filepond">
+                                                            <input type="file"  id="upload_file" name="upload_file" class="image-filter-filepond">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                               
                                             <div class="col-md-6 mb-4">
                                             <h6>Tải lên nguồn phim</h6>
-                                                <input class="form-control" type="file" id="formFile">
+                                                 <!-- <input type="file" id="upload_video" name="upload_video" class="video-filter-filepond"> -->
+                                                <input class="form-control"  type="file" id="upload_video">
                                             </div>
                                             <div class="col-6 d-flex justify-content-end">
-                                                        <button type="submit"
+                                                        <button id="submit" type="submit"
                                                             class="btn btn-primary me-1 mb-1">Thêm mới</button>
                                                         <button type="reset"
                                                             class="btn btn-light-secondary me-1 mb-1">Xóa hết</button>
                                                     </div>
                                         </div>
                                         </form>
+
+
+                                                 
+                                        <script>
+                                        // event multiple select
+                                     
+
+                                        document.getElementById('submit').onclick = function() {
+                                        var selected = [];
+                                        for (var option of document.getElementById('pets').options)
+                                        {
+                                            if (option.selected) {
+                                                selected.push(option.value);
+                                            }
+                                        }
+                                        // alert(selected);
+                                        document.getElementById("result_select").value = selected;
+                                       }
+                                        // event image
+                                       $(function(){
+                                            $("#upload_file").change(function(event){
+                                                // console.log(event.target.files[0].name)
+                                                var pathfile = event.target.files[0].name;
+                                                document.getElementById("result_image").value = pathfile;
+                                            });
+                                        })
+                                  
+                                 
+                                        
+                                        $(function(){
+                                            $("#upload_video").change(function(event){
+                                                // console.log(event.target.files[0].name)
+                                                var pathvideo = event.target.files[0].name;
+                                                document.getElementById("result_video").value = pathvideo;
+                                            });
+                                        })
+                                        $(document).ready(function() {
+                                            document.getElementById("result_image").value ="";
+                                            document.getElementById("result_video").value ="";
+                                        });
+
+
+
+                                        // function alert($msg) {
+                                        //        alert('$msg');
+                                        //     }
+                                        </script>
+                                        
+
+
+
+
+
+<script>
+
+$('form.ajax1').on('submit',function(){
+
+       var  that = $(this),
+            url = that.attr('action'),
+            type = that.attr('method'),
+            data = {};
+        that.find('[name]').each(function(index,value){
+           var that = $(this),
+           name = that.attr('name'),
+           value = that.val();
+           data[name] = value;
+        });
+        $.ajax({
+            url: url,
+            type: type,
+            data: selected,
+            success: function(response ){
+                console.log(response);
+                // $('#result_review').html(response);
+            }
+        });
+     
+        return false;
+   });
+
+
+
+
+</script>
+
+
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -139,6 +248,23 @@
             resolve(type);
         })
     });
+    // FilePond.create( document.querySelector('.video-filter-filepond'), {
+    //     allowImagePreview: true, 
+    //     allowImageFilter: true,
+    //     allowImageExifOrientation: false,
+    //     allowImageCrop: false,
+    //     imageFilterColorMatrix: [
+    //         0.299, 0.587, 0.114, 0, 0,
+    //         0.299, 0.587, 0.114, 0, 0,
+    //         0.299, 0.587, 0.114, 0, 0,
+    //         0.000, 0.000, 0.000, 1, 0
+    //     ],
+    //     acceptedFileTypes: ['video/mp4'],
+    //     fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+    //         // Do custom type detection here and return with promise
+    //         resolve(type);
+    //     })
+    // });
 
 </script>
 
