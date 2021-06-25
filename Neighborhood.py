@@ -68,7 +68,6 @@ class CF(object):
     def fit(self):
         self.refresh()
         
-    
     def __pred(self, u, i, normalized = 1):
         """ 
         predict the rating of user u for item i (normalized)
@@ -101,7 +100,6 @@ class CF(object):
         if self.uuCF: return self.__pred(u, i, normalized)
         return self.__pred(i, u, normalized)
             
-    
     def recommend(self, u):
         """
         Determine all items should be recommended for user u.
@@ -175,11 +173,8 @@ SE = 0 # squared error
 for n in range(n_tests):
     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
     SE += (pred - rate_test[n, 2])**2 
-
 RMSE = np.sqrt(SE/n_tests)
 print ('User-user CF, RMSE =', RMSE)
-
-
 # rs = CF(rate_train, k = 30, uuCF = 0)
 # rs.fit()
 

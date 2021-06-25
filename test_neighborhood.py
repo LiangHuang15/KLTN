@@ -158,7 +158,7 @@ class CF(object):
 import pymysql 
 conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
 cursor = conn.cursor()
-Ratings_table = pd.read_sql_query("select * from Ratings",conn)
+Ratings_table = pd.read_sql_query("select * from ratings",conn)
 # data_items=Ratings_table[['UserID','MovieID','Rating','timestamp']]
 data_items=Ratings_table[['UserID','MovieID','Rating','Timestamp']]
 # print('data_items',data_items)
@@ -213,7 +213,6 @@ for n in range(n_tests):
 
 RMSE = np.sqrt(SE/n_tests)
 print ('User-user CF, RMSE =', RMSE)
-
 
 
 
