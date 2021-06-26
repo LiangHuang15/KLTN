@@ -190,8 +190,8 @@ rate_test = Ratings_test.values
 
 
 # indices start from 0
-rate_train[:, :2] -= 1
-rate_test[:, :2] -= 1
+# rate_train[:, :2] -= 1
+# rate_test[:, :2] -= 1
 
 
 #______________________________________________________
@@ -208,7 +208,7 @@ rs.fit()
 n_tests = rate_test.shape[0]
 SE = 0 # squared error
 for n in range(n_tests):
-    pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
+    pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 1)
     SE += (pred - rate_test[n, 2])**2 
 
 RMSE = np.sqrt(SE/n_tests)

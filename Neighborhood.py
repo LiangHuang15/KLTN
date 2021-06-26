@@ -1,6 +1,8 @@
 import pandas as pd 
 import numpy as np
+import math
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.model_selection import train_test_split
 from scipy import sparse 
 class CF(object):
     """docstring for CF"""
@@ -149,27 +151,53 @@ class CF(object):
             else: 
                 print ('    Recommend item', u, 'for user(s) : ', recommended_items)
 
-r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
+# r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
 
-ratings_base = pd.read_csv('ml-100k/ub.base', sep='\t', names=r_cols, encoding='latin-1')
-ratings_test = pd.read_csv('ml-100k/ub.test', sep='\t', names=r_cols, encoding='latin-1')
+# ratings_base = pd.read_csv('ml-100k/ub.base', sep='\t', names=r_cols, encoding='latin-1')
+# ratings_test = pd.read_csv('ml-100k/ub.test', sep='\t', names=r_cols, encoding='latin-1')
+
+# print('type',ratings_base.dtypes)
+
+import pymysql 
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+Ratings_table = pd.read_sql_query("select * from ratings",conn)
+data_items=Ratings_table[['UserID','MovieID','Rating','Timestamp']]
+Y= data_items[['UserID','MovieID','Rating','Timestamp']]
+print('type',Y.dtypes)
+
+X=Y.rename(columns={"UserID":"user_id","MovieID":"movie_id","Rating":"rating","Timestamp":"unix_timestamp"})
+print('data',X)
+X_train, X_test= train_test_split(X,test_size = 0.2)
+Ratings_base=X_train.sort_values(by=['user_id'])
+Ratings_test=X_test.sort_values(by=['user_id'])
+
+
+rate_train = Ratings_base.values
+rate_test = Ratings_test.values
+
+
+
 
 pd.set_option('display.max_rows',1000000)
 pd.set_option('display.max_columns',5)
-rate_train = ratings_base.values
-rate_test = ratings_test.values
+# rate_train = ratings_base.values
+# rate_test = ratings_test.values
+
+
 print('rate1',rate_train)
 print('rate2',rate_test)
-# indices start from 0
 rate_train[:, :2] -= 1
 rate_test[:, :2] -= 1
 print('rate_train',rate_train[:, :2])
 print('rate_test',rate_test[:, :2])
+
+
 rs = CF(rate_train, k = 30, uuCF = 1)
 rs.fit()
-
+rs.print_recommendation()
 n_tests = rate_test.shape[0]
-SE = 0 # squared error
+SE= 0 # squared error
 for n in range(n_tests):
     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
     SE += (pred - rate_test[n, 2])**2 

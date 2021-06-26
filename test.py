@@ -3,8 +3,12 @@
 
 # # axis = 0 là tính trên các cột, axis = 1 là tính trên các dòng.
 
-# # import numpy as np
-# # a = np.array([[1,2,3],[1,4,2],[10,10,1],[2,3,4],[11,4,8]])
+import numpy as np
+a = np.array([[7,7,7,7],[1,2,3,4],[1,4,2,6],[10,10,1,8],[2,3,4,6],[11,4,8,4],[4,4,4,3]])
+print(a)
+b = a[[1,2,3],1].tolist()
+print(b)
+print(a[:,0])
 # # max lấy giá trị lớn nhất trong ma trận
 
 # # print(int(np.max(a))+1)
@@ -164,29 +168,29 @@
 #     main()
 
 # -*- coding: utf-8 -*-
-import pandas as pd
-import pymysql 
-import csv 
-from pandas import DataFrame
-from GoogleImageScrapper import GoogleImageScraper
-import os
-# pd.set_option('display.max_rows',1000000)
-# pd.set_option('display.max_columns',5)
-conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
-cursor = conn.cursor()
-list = pd.read_sql_query("select MovieID,Title from movies",conn)
-webdriver_path = os.getcwd()+"/webdriver/chromedriver"
-i = 90
-image_path = os.getcwd()+"/photos"
-search_key = list['Title'].values[i]
-number_of_images= 1
-image_scrapper = GoogleImageScraper(webdriver_path,image_path,search_key,number_of_images)
-image_urls = image_scrapper.find_image_urls()
+# import pandas as pd
+# import pymysql 
+# import csv 
+# from pandas import DataFrame
+# from GoogleImageScrapper import GoogleImageScraper
+# import os
+# # pd.set_option('display.max_rows',1000000)
+# # pd.set_option('display.max_columns',5)
+# conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+# cursor = conn.cursor()
+# list = pd.read_sql_query("select MovieID,Title from movies",conn)
+# webdriver_path = os.getcwd()+"/webdriver/chromedriver"
+# i = 90
+# image_path = os.getcwd()+"/photos"
+# search_key = list['Title'].values[i]
+# number_of_images= 1
+# image_scrapper = GoogleImageScraper(webdriver_path,image_path,search_key,number_of_images)
+# image_urls = image_scrapper.find_image_urls()
 
-print(image_urls)
-sql = "UPDATE movies SET url =%s WHERE MovieID = %s"
-cursor.execute(sql,(image_urls,list['MovieID'].values[i]))
+# print(image_urls)
+# sql = "UPDATE movies SET url =%s WHERE MovieID = %s"
+# cursor.execute(sql,(image_urls,list['MovieID'].values[i]))
 
 
 
-conn.commit()
+# conn.commit()

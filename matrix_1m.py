@@ -6,7 +6,7 @@ from pandas import DataFrame
 import pymysql
 import json
 
-for i in range(2,3,1):
+for i in range(102,104,1):
     try:
         user = i
         
