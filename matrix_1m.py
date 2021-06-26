@@ -5,11 +5,14 @@ from sklearn.metrics import mean_squared_error
 from pandas import DataFrame
 import pymysql
 import json
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+list_id = pd.read_sql_query("select UserID from users order by UserID asc ",conn)
 
-for i in range(2,3,1):
+for i in range(len(list_id)):
     try:
-        user = i
-        
+        user = list_id["UserID"][i]
+        conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
         conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
         cursor = conn.cursor()
         data_ratings = pd.read_sql_query("select UserID,MovieID,Rating from ratings",conn)
@@ -30,12 +33,13 @@ for i in range(2,3,1):
         # print df order by  user_id
         df  = X_train_initial.sort_values(by=['user_id'])
         df1  = X_test_update.sort_values(by=['user_id'])
-        print(df1)
+        
+        # print(df1) //////////// 
         # show number of rows 
         number_of_rows_X_train  = len(X_train_initial.index)
         number_of_rows_X_test = len (X_test_update.index)
         # print(number_of_rows_X_train)
-        print('number_X_test :',number_of_rows_X_test)
+        # print('number_X_test :',number_of_rows_X_test) /////////////////////
 
         matrix_fact = KernelMF(n_epochs=20, n_factors=100, verbose=1, lr=0.001, reg=0.005)
 
@@ -44,7 +48,7 @@ for i in range(2,3,1):
 
         # Update model with new users
 
-        print('matrix update users:')
+        # print('matrix update users:') ////////////////////////////
         matrix_fact.update_users(
             X_train_update, y_train_update, lr=0.001, n_epochs=20, verbose=1
         )
@@ -52,15 +56,15 @@ for i in range(2,3,1):
         pred = matrix_fact.predict(X_test_update)
 
         rmse = mean_squared_error(y_test_update, pred, squared=False)
-        print(f"\nTest RMSE: {rmse:.4f}")
+        # print(f"\nTest RMSE: {rmse:.4f}") //////////////////////////
 
         # user = 300
         items_known = X_train_initial.query("user_id == @user")["item_id"]
 
-        print(matrix_fact.recommend(user=user, items_known=items_known))
+        # print(matrix_fact.recommend(user=user, items_known=items_known)) /////////////////////////////
 
         output= matrix_fact.recommend(user=user, items_known=items_known)
-        print('output:',output)
+        # print('output:',output) ////////////////////////////
 
         # # data_items = pd.read_csv("ml-1m/movies.dat",names=name,sep='::', engine="python")
 
@@ -79,21 +83,21 @@ for i in range(2,3,1):
 
 
         output_data = pd.merge(left=output,right=data_items,left_on='item_id',right_on='MovieID',how='inner')
-        print('output_data:',output_data)
+        # print('output_data:',output_data) //////////////////////////
 
 
 
         output_cols =output_data[["user_id", "item_id","Title","Genres","url"]]
         output_result = DataFrame(output_cols,columns=['user_id','item_id','Title','Genres','url'])
-        print(output_result)
+        # print(output_result) ////////////////////////
 
-        #get value it row 0 
+        #get value it row 0  
         print('id :' ,output_result.loc[0,'user_id'])
-        print('movie_id :',output_result.loc[0,'item_id'])
+        # print('movie_id :',output_result.loc[0,'item_id']) //////////////
 
 
 
-        output_result.to_json (r'/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json')
+        # output_result.to_json (r'/Applications/XAMPP/xamppfiles/htdocs/KLTN/output.json')
 
         conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
         cursor = conn.cursor()
