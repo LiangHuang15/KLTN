@@ -17,10 +17,10 @@
         echo $username;
         echo $password;
         if (empty($username)){
-            header("Location: index.php?error=Username is required");
+            header("Location: login.php?error=Username is required");
             exit();
         }elseif(empty($password)){
-            header("Location: index.php?error=Password is requured");
+            header("Location: login.php?error=Password is requured");
             exit();
         }else
         {
@@ -35,12 +35,12 @@
                 {
                    $_SESSION['UserID_admin'] = $row['UserID'];
                    $_SESSION['Username_admin'] = $row['Username'];
-                   header("Location: dashboard.php");
+                   header("Location: index.php");
                    exit();
                 } 
             }
             else{
-                header("Location: index.php?error=Incorect username or password");
+                header("Location: login.php?error=Incorect username or password");
                 exit();
                 
           
@@ -50,7 +50,7 @@
     }
     else
         {
-            header("Location: index.php");
+            header("Location: login.php");
             echo"error";
             exit();
         }

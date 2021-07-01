@@ -210,8 +210,8 @@
 													</div>
 
 													<ul class="card__meta">
-														<li><span>Genre:</span> <a href="#">Action</a></li>
-														<li><span>Release year:</span> 2017</li>
+														<li><span>Thể loại:</span> <a href="#">Action</a></li>
+														<li><span>Năm phát hành:</span> 2017</li>
 														<li><span>Running time:</span> 120 min</li>
 														<li><span>Country:</span> <a href="#">USA</a> </li>
 													</ul>
@@ -856,8 +856,8 @@ else{?>
 													</div>
 
 													<ul class="card__meta">
-														<li><span>Genre:</span> <a href="#">Action</a></li>
-														<li><span>Release year:</span> 2017</li>
+														<li><span>Thể loại:</span> <a href="#">Action</a></li>
+														<li><span>Năm phát hành:</span> 2017</li>
 														<li><span>Running time:</span> 120 min</li>
 														<li><span>Country:</span> <a href="#">USA</a> </li>
 													</ul>
@@ -921,15 +921,15 @@ else{?>
 						<!-- content tabs nav -->
 						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
 							<li class="nav-item" >
-								<a class="nav-link2 active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a>
+								<a class="nav-link2 active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Bình luận</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link1" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Reviews</a>
+								<a class="nav-link1" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
+								<a style="display:none;" class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
 							</li>
 						</ul>
 						<!-- end content tabs nav -->

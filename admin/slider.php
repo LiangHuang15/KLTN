@@ -165,7 +165,7 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
 
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i
+                                    <li><a class="dropdown-item" href="logout.php"><i
                                                 class="icon-mid bi bi-box-arrow-left me-2"></i> Đăng xuất</a></li>
                                 </ul>
                             </div>
@@ -173,6 +173,11 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
                     </div>
                 </nav>
             </header>
-<?php
+
+            <?php
+        }
+        else
+        {
+            header("Location: login.php");
         }
 ?>
