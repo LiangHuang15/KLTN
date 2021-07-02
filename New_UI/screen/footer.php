@@ -14,13 +14,13 @@
             
              <div class="col-lg-4 col-md-6 mb-lg-0">
                  <h6 class="text-uppercase font-weight-bold mb-4">Địa chỉ</h6>
-                 <p class="text-muted mb-4">Song Hành, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh, Vietnam</p>
+                 <p class="text-muted mb-4">Song Hành, khu phố 6, Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</p>
                  <ul class="list-inline mt-4">
-                     <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fab fa-2x fa-twitter"></i></a></li>
-                     <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fab fa-2x fa-facebook-f"></i></a></li>
-                     <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fab fa-2x fa-instagram"></i></a></li>
-                     <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fab fa-2x fa-youtube"></i></a></li>
-                     <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fab fa-2x fa-google"></i></a></li>
+                     <li class="list-inline-item"><a href="https://twitter.com/office0ffrg" target="_blank" title="twitter"><i class="fab fa-2x fa-twitter"></i></a></li>
+                     <li class="list-inline-item"><a href="https://www.facebook.com/HTstestpage/" target="_blank" title="facebook"><i class="fab fa-2x fa-facebook-f"></i></a></li>
+                     <li class="list-inline-item"><a href="https://theshadeshop.net/instagram-test-page/" target="_blank" title="instagram"><i class="fab fa-2x fa-instagram"></i></a></li>
+                     <li class="list-inline-item"><a href="https://www.youtube.com/new" target="_blank" title="pinterest"><i class="fab fa-2x fa-youtube"></i></a></li>
+                     <li class="list-inline-item"><a href="https://developers.google.com/speed/pagespeed/insights/?hl=vi" target="_blank" title="vimeo"><i class="fab fa-2x fa-google"></i></a></li>
                  </ul>
              </div>
          </div>

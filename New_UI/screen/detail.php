@@ -72,9 +72,9 @@
 
               <div class="float-right">
 
-                <a href="#" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
+                <a href="https://twitter.com/office0ffrg" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="#" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <a href="https://www.facebook.com/HTstestpage/" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
 
               </div>
 
@@ -212,8 +212,8 @@
 													<ul class="card__meta">
 														<li><span>Thể loại:</span> <a href="#">'.$row["Genres"].'</a></li>
 														<li><span>Năm phát hành:</span> 2017</li>
-														<li><span>Running time:</span> 120 min</li>
-														<li><span>Country:</span> <a href="#">USA</a> </li>
+														<li><span>Thời gian phát:</span> 120 min</li>
+														<li><span>Quốc gia:</span> <a href="#">USA</a> </li>
 													</ul>
 
 													<div class="card__description card__description--details">
@@ -283,8 +283,8 @@
 								<!-- <a class="nav-link1 ">Reviews</a> -->
 							</li>
 
-							<li class="nav-item">
-								<a class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
+							<!-- <li class="nav-item">
+								<a class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a> -->
 							</li>
 						</ul>
 						<!-- end content tabs nav -->
@@ -302,7 +302,7 @@
 		  							
 									<li class="nav-item"><a class="nav-link1" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a></li>
 
-									<li class="nav-item"><a class="nav-link1" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a></li>
+									<!-- <li class="nav-item"><a class="nav-link1" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a></li> -->
 								</ul>
 							</div>
 						</div>
@@ -325,7 +325,7 @@
 										<form  method="post" action="comment_add.php" class="ajax">
 											<input style="display:none;" type="text" id="movieid" name="movieid" value="<?php echo $_GET['id'] ?>" ></input>
 											<input style="display:none;" type="text" id="userid" name="userid" value="<?php echo $_SESSION['UserID'] ?>" ></input>
-												<textarea id="comment" name="comment" class="form__textarea" placeholder="Add comment"></textarea>
+												<textarea id="comment" name="comment" class="form__textarea" placeholder="Thêm bình luận"></textarea>
 												<button id="submitButton" type="submit" class="form__btn" style="color: white">Bình luận</button>
 										</form>
 										<br>
@@ -401,7 +401,7 @@
 												<!-- end  script mouse over start get value -->
 											</div>
 											<input style="display:none;" class="mb-1" type="text" id="rating" name="rating" value="5"></input>
-											<textarea class="form__textarea" id="review" name="review" placeholder="Review"></textarea>
+											<textarea class="form__textarea" id="review" name="review" placeholder="Viết review"></textarea>
 											<button  type="submit" class="form__btn" style="color: white">Gửi đánh giá</button>
 										</form>
 										<script>
@@ -722,9 +722,9 @@ else{?>
 
               <div class="float-right">
 
-                <a href="#" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
+                <a href="https://twitter.com/office0ffrg" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="#" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <a href="https://www.facebook.com/HTstestpage/" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
 
               </div>
 
@@ -928,8 +928,8 @@ else{?>
 								<a class="nav-link1" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a>
 							</li>
 
-							<li class="nav-item">
-								<a style="display:none;" class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a>
+							<!-- <li class="nav-item">
+								<a style="display:none;" class="nav-link1" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a> -->
 							</li>
 						</ul>
 						<!-- end content tabs nav -->

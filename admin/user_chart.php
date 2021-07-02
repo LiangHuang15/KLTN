@@ -20,7 +20,7 @@
 
                 <section class="section">
                     <div class="row">
-                        <div class="col-md-9">
+                        <!-- <div class="col-md-9">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Line Area Chart</h4>
@@ -29,11 +29,11 @@
                                     <div id="area"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
+                        </div> -->
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Radial Gradient Chart</h4>
+                                    <h4>Tỉ lệ số người dùng là nữ</h4>
                                 </div>
                                 <div class="card-body">
                                     <div id="radialGradient"></div>
@@ -41,18 +41,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Tổng số tài khoản được tạo qua các năm</h4>
+                                    <h4>Số người dùng theo độ tuổi</h4>
                                 </div>
                                 <div class="card-body">
                                     <div id="line"></div>
                                 </div>
                             </div>
                         </div>
-                    
+                     -->
                     </div>
                     <div class="row">
                       <div class="col-md-12">
@@ -86,28 +86,29 @@
 
 
 
-  <?php
-  //   include './conn.php';
-  //   $connect=conn();
-  //   $sql="SELECT count(*) as number  year(from_unixtime(Timestamp)) as nam FROM ratings
-  //    GROUP by  year(from_unixtime(Timestamp))
-  //    ORDER by year(from_unixtime(Timestamp)) desc limit 12";
-  //   $ratings_list=[];
-  //   $name_list=[];
-  //   $i = 0;
-  //   $result = mysqli_query($connect, $sql);
-  //   if (mysqli_num_rows($result) > 0) {
-  //   while($row = mysqli_fetch_assoc($result))
-  // {
-  //     $ratings_list[$i]=$row['count'];
-  //     $name_list[$i]=$row['Title'];
-  //     $i++ ;
-  // }
-  // }else {
-  //     echo "0 results";
-  // }	
-?>
 <script>
+
+
+
+<?php
+    // include './conn.php';
+    // $connect=conn();
+    // $sql_="select count(*) as count from users where Age<20";
+    // $result_ = mysqli_query($connect, $sql_);
+    // $row_= mysqli_fetch_assoc($result_);
+    // $age_20 = $row_["count"];
+    // $sql1="select count(*) as count from users where Age>=20 and Age<40";
+    // $result1 = mysqli_query($connect, $sql1);
+    // $row1= mysqli_fetch_assoc($result1);
+    // $age_40 = $row1['count'];
+    // $sql2="select count(*) as count from users where Age>=40 and Age<60";
+    // $result12 = mysqli_query($connect, $sql2);
+    // $row2= mysqli_fetch_assoc($result2);
+    // $age_60 = $row2['count'];
+?>
+const age_20 =  <?php echo json_encode($age_20); ?>;
+// const age_40 =  <?php echo json_encode($age_40); ?>;
+// const age_60 =  <?php echo json_encode($age_60); ?>;
 
 var lineOptions = {
   chart: {
@@ -116,11 +117,11 @@ var lineOptions = {
   series: [
     {
       name: "sales",
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+      data: [20, 40, 60],
     },
   ],
   xaxis: {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+    categories: ['0-20', '20-40', '40-60'],
   },
 };
 var candleOptions = {
@@ -514,10 +515,20 @@ var barOptions = {
     },
   },
 };
-
-
+<?php
+$sql="select count(*) as female from users where Gender='F'";
+    $result = mysqli_query($connect, $sql);
+    $row= mysqli_fetch_assoc($result);
+    $female = $row['female'];
+    $sql1="select count(*) as total from users ";
+    $result1 = mysqli_query($connect, $sql1);
+    $row1= mysqli_fetch_assoc($result1);
+    $total = $row1['total'];
+?>
+const number_female =  <?php echo json_encode($female); ?>;
+const total =  <?php echo json_encode($total); ?>;
 var radialGradientOptions = {
-  series: [75],
+  series: [(parseInt(number_female)/parseInt(total))*100],
   chart: {
     height: 350,
     type: "radialBar",

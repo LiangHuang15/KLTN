@@ -19,7 +19,7 @@
                 </div>
                 <section class="section">
                     <div class="row">
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Phim có số lượng đánh giá nhiều nhất</h4>
@@ -28,8 +28,8 @@
                                     <canvas id="bar"></canvas>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
+                        </div> -->
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Tỉ lệ đánh giá</h4>
@@ -58,7 +58,7 @@
 
 
 
-<?php
+// <?php
 include './conn.php';
 $connect=conn();
 $sql="select  count(*) as count ,Title from ratings,movies  where ratings.MovieID=movies.MovieID group by ratings.MovieID ORDER by count desc limit 5";
@@ -135,73 +135,74 @@ var myChart = new Chart(ctx, {
     // }else {
     //     echo "0 results";
     // }	
-?>
-var chartColors = {
-    red: 'rgb(255, 99, 132)',
-    orange: 'rgb(255, 159, 64)',
-    yellow: 'rgb(255, 205, 86)',
-    green: 'rgb(75, 192, 192)',
-    info: '#41B1F9',
-    blue: '#3245D1',
-    purple: 'rgb(153, 102, 255)',
-    grey: '#EBEFF6'
-};
+// ?>
+// var chartColors = {
+//     red: 'rgb(255, 99, 132)',
+//     orange: 'rgb(255, 159, 64)',
+//     yellow: 'rgb(255, 205, 86)',
+//     green: 'rgb(75, 192, 192)',
+//     info: '#41B1F9',
+//     blue: '#3245D1',
+//     purple: 'rgb(153, 102, 255)',
+//     grey: '#EBEFF6'
+// };
 
 
-var ctxBar = document.getElementById("bar").getContext("2d");
-var myBar = new Chart(ctxBar, {
-    type: 'bar',
-    data: {
-        labels: ["Jannnnnnnn", "Febnnnnnnn", "Marnnnnnnn", "Aprnnnnnnn", "Maynnnnnnn"],
-        // labels: name_list,
+// var ctxBar = document.getElementById("bar").getContext("2d");
+// var myBar = new Chart(ctxBar, {
+//     type: 'bar',
+//     data: {
+//         labels: ["Jannnnnnnn", "Febnnnnnnn", "Marnnnnnnn", "Aprnnnnnnn", "Maynnnnnnn"],
+//         // labels: name_list,
  
-        datasets: [{
-            label: 'Students',
-            backgroundColor: [chartColors.yellow, chartColors.red, chartColors.green, chartColors.grey, chartColors.info, chartColors.blue, chartColors.grey],
-            // data: [
-            //     5,
-            //     10,
-            //     30,
-            //     40,
-            //     35,
-            //     55,
-            //     15,
-            // ]
-            data: ratings_list
-        }]
-    },
-    options: {
-        responsive: true,
-        barRoundness: 1,
-        title: {
-            display: true,
-            text: "Students in 2020"
-        },
-        legend: {
-            display: false
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    suggestedMax: 40 + 20,
-                    padding: 10,
-                },
-                gridLines: {
-                    drawBorder: false,
-                }
-            }],
-            xAxes: [{
-                gridLines: {
-                    display: false,
-                    drawBorder: false
-                }
-            }]
-        }
-    }
-});
+//         datasets: [{
+//             label: 'Students',
+//             backgroundColor: [chartColors.yellow, chartColors.red, chartColors.green, chartColors.grey, chartColors.info, chartColors.blue, chartColors.grey],
+//             // data: [
+//             //     5,
+//             //     10,
+//             //     30,
+//             //     40,
+//             //     35,
+//             //     55,
+//             //     15,
+//             // ]
+//             data: ratings_list
+//         }]
+//     },
+//     options: {
+//         responsive: true,
+//         barRoundness: 1,
+//         title: {
+//             display: true,
+//             text: "Students in 2020"
+//         },
+//         legend: {
+//             display: false
+//         },
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     beginAtZero: true,
+//                     suggestedMax: 40 + 20,
+//                     padding: 10,
+//                 },
+//                 gridLines: {
+//                     drawBorder: false,
+//                 }
+//             }],
+//             xAxes: [{
+//                 gridLines: {
+//                     display: false,
+//                     drawBorder: false
+//                 }
+//             }]
+//         }
+//     }
+// });
 
 <?php
+
     $sql="SELECT count(*) as number, Date(from_unixtime(Timestamp)) as date FROM ratings where Rating >=3
     GROUP by day(from_unixtime(Timestamp)), month(from_unixtime(Timestamp)), year(from_unixtime(Timestamp))
     ORDER by year(from_unixtime(Timestamp)) desc,month(from_unixtime(Timestamp))desc,(from_unixtime(Timestamp))desc limit 12";

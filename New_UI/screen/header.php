@@ -55,9 +55,9 @@
 
               <div class="float-right">
 
-                <a href="#" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
+                <a href="https://twitter.com/office0ffrg" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="#" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <a href="https://www.facebook.com/HTstestpage/" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
 
               </div>
 
