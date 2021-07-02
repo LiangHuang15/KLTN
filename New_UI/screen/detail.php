@@ -269,17 +269,17 @@
 				<div class="row">
 					<div class="col-12">
 						<!-- content title -->
-						<h2 class="content__title">Thông tin phim</h2>
+						<h1 class="content__title">Thông tin phim</h1>
 						<!-- end content title -->
 
 						<!-- content tabs nav -->
 						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
 							<li class="nav-item" >
-								<a class="nav-link2 active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a>
+								<a class="nav-link2 active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Bình luận</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link1" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Reviews</a>
+								<a class="nav-link1" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a>
 								<!-- <a class="nav-link1 ">Reviews</a> -->
 							</li>
 
@@ -298,9 +298,9 @@
 
 							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
 								<ul class="nav nav-tabs" role="tablist">
-									<li class="nav-item"><a  class="nav-link1 active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a></li>
+									<li class="nav-item"><a  class="nav-link1 active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Bình luận</a></li>
 		  							
-									<li class="nav-item"><a class="nav-link1" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Reviews</a></li>
+									<li class="nav-item"><a class="nav-link1" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a></li>
 
 									<li class="nav-item"><a class="nav-link1" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a></li>
 								</ul>
@@ -326,7 +326,7 @@
 											<input style="display:none;" type="text" id="movieid" name="movieid" value="<?php echo $_GET['id'] ?>" ></input>
 											<input style="display:none;" type="text" id="userid" name="userid" value="<?php echo $_SESSION['UserID'] ?>" ></input>
 												<textarea id="comment" name="comment" class="form__textarea" placeholder="Add comment"></textarea>
-												<button id="submitButton" type="submit" class="form__btn">Send</button>
+												<button id="submitButton" type="submit" class="form__btn" style="color: white">Bình luận</button>
 										</form>
 										<br>
 		  								<div id="result_comment" class="list_comments">
@@ -400,9 +400,9 @@
 												</script>
 												<!-- end  script mouse over start get value -->
 											</div>
-											<input style="display:none;" type="text" id="rating" name="rating" value="5"></input>
+											<input style="display:none;" class="mb-1" type="text" id="rating" name="rating" value="5"></input>
 											<textarea class="form__textarea" id="review" name="review" placeholder="Review"></textarea>
-											<button  type="submit" class="form__btn">Send</button>
+											<button  type="submit" class="form__btn" style="color: white">Gửi đánh giá</button>
 										</form>
 										<script>
 										$(':radio').change(function() {
@@ -943,9 +943,9 @@ else{?>
 
 							<div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
 								<ul class="nav nav-tabs" role="tablist">
-									<li class="nav-item"><a  class="nav-link1 active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Comments</a></li>
+									<li class="nav-item"><a  class="nav-link1 active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Bình luận</a></li>
 
-									<li class="nav-item"><a class="nav-link1" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Reviews</a></li>
+									<li class="nav-item"><a class="nav-link1" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Đánh giá</a></li>
 
 									<li class="nav-item"><a class="nav-link1" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Photos</a></li>
 								</ul>
