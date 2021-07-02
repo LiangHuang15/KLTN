@@ -198,7 +198,7 @@
                         <div class="page-title">
                     <div class="row">
                         <div class="col-12 d-flex mb-2">
-                            <h3 class="col-10 ">Danh người dùng trên hệ thống</h3>
+                            <h3 class="col-10 ">Danh sách người dùng trên hệ thống</h3>
                         </div>
                     </div>
                 </div>

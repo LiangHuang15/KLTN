@@ -1,12 +1,4 @@
-<?php
-        session_start();
-        if(isset($_SESSION['UserID']) && isset($_SESSION['Username']))
-        {
-			header("Location: home.php");
-			exit();
-		}
-		else{
-?>
+
 
 
 <!doctype html>
@@ -56,9 +48,9 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">info@yourdomain.com</span></a>
+              <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">17520844@gm.uit.edu.vn</span></a>
               <span class="mx-md-2 d-inline-block"></span>
-              <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">1+ (234) 5678 9101</span></a>
+              <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">+84353817474</span></a>
 
 
               <div class="float-right">
@@ -98,7 +90,8 @@
                     </form>
                       
                 </li> 
-                <li><a href="home.php" class="nav-link">Trang chính</a></li>
+                <li><a  href="home.php" class="nav-link">Trang chính</a></li>
+                <li><a href="all_movie.php" class="nav-link">Danh sách phim</a></li>
                   
                   <li  class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
@@ -126,7 +119,7 @@
                       </ul>
                  
                   </li>
-                  <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
+                  <!-- <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li> -->
                   <li class="btn-login" ><a href="login.php" id="login" class="nav-link " >Đăng nhập</a></li>
 
                   
@@ -208,10 +201,19 @@ function hide_search() {
 </script>
 <!--  end click hide search  -->
 
+<!-- onclick genres  -->
+
+<script>
+
+    function newpage(clicked_id)
+    {
+      $temp  = clicked_id;
+      window.location.href = "genres.php?id="+$temp;
+
+    }
+
+</script>	
+<!-- end onclick genres  -->
 
 
 
-
-<?php
-}
-?>

@@ -110,19 +110,7 @@
 <!-- end load pagination -->
 
 
-<!-- onclick genres  -->
 
-<script>
-
-    function newpage(clicked_id)
-    {
-      $temp  = clicked_id;
-      window.location.href = "genres.php?id="+$temp;
-
-    }
-
-</script>	
-<!-- end onclick genres  -->
 
 <!-- onclick detail  -->
 

@@ -55,7 +55,7 @@ function detail(clicked_id)
 <!-- end onclick detail  -->
 
 <!-- onclick genres  -->
-
+<!-- 
 <script>
 
     function newpage(clicked_id)
@@ -65,5 +65,5 @@ function detail(clicked_id)
 
     }
 
-</script>	
+</script>	 -->
 <!-- end onclick genres  -->

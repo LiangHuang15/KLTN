@@ -52,16 +52,16 @@ if($total_data > 0)
             <div style ="height: 98%;width:96%;position:absolute;margin-top:1%;border-radius:5px;"class="image">
                 <a href="#" style ="height: 100%;width:100%;border-radius:5px;">
                 <img src="'.$row["url"].'" class="w-100" style="position: relative;height: 100%;width:100%;border-radius:5px;">
-                <div style="width:100%;height:100%;position: absolute; bottom:0px;border-radius:5px;">
-                    <div style="position: absolute;background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));height: 100%; width:100%; bottom: 0px; border-radius:5px;display:flex;">
-                        <div style="width:100%;height:30%;position:absolute;padding:5px;display:block;bottom:0;">
-                        <p style="color:rgb(255, 255, 255);text-overflow: ellipsis; overflow: hidden;  white-space: nowrap;width:100%;font-family: bebas kai;font-weight:bold;margin-top:0px;margin: 0px 0;">'.$row["Title"].'</p>
-                        <p  style="color:rgb(255, 255, 255);text-overflow: ellipsis; overflow: hidden;  white-space: nowrap; width:100%;font-family: bebas kai;margin-top:0px;margin: 0px 0;">'.$row["Genres"].'</p>
-                        <span style="color:rgb(255, 255, 255);font-family: bebas kai;margin-top:0px;margin: 0px 0;">'.$row["avg_ratings"].'/5</span> <i class="fas fa-star" style="color:yellow"> </i>
+                    <div style="width:100%;height:100%;position: absolute; bottom:0px;background-image:linear-gradient(rgba(255,255,255,0), rgba(0,0,0,0.2));border-radius:5px;">
+                        <div style="position: absolute; height: 30%; width:100%; bottom: 0px;left:5px; border-radius:5px;display:flex;">
+                            <div style="width:100%;height:100%;position:relative;display:block;">
+                            <p style="color:rgb(255, 255, 255);width:100%;text-overflow: ellipsis; overflow: hidden;  white-space: nowrap;	font-family: bebas kai; font-weight:bold;margin-top:0px;margin: 0px 0;">'.$row["Title"].'</p>
+                            <p  style="color:rgb(255, 255, 255);width:100%;text-overflow: ellipsis; overflow: hidden;  white-space: nowrap;font-family: bebas kai;margin-top:0px;margin: 0px 0;">'.$row["Genres"].'</p>
+                            <span style="color:rgb(255, 255, 255);font-family: bebas kai;margin-top:0px;margin: 0px 0;">'.$row["avg_ratings"].'/5</span> <i class="fas fa-star" style="color:yellow"> </i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </img>
+                </img>
                 <div class="overlay">
                     <div style="text-align:center;"class="detail">Xem phim</div>
                 </div>

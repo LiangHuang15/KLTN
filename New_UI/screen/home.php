@@ -47,10 +47,9 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">info@yourdomain.com</span></a>
+            <a href="#" class=""><span class="mr-2  icon-envelope-open-o"></span> <span class="d-none d-md-inline-block">17520844@gm.uit.edu.vn</span></a>
               <span class="mx-md-2 d-inline-block"></span>
-              <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">1+ (234) 5678 9101</span></a>
-
+              <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">+84353817474</span></a>
 
               <div class="float-right">
 
@@ -90,33 +89,34 @@
                       
                 </li> 
                 <li><a href="home.php" class="nav-link">Trang chính</a></li>
-                  
-                  <li class="has-children">
+                <li><a href="all_movie.php" class="nav-link">Danh sách phim</a></li>
+                <li  class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
-                    <ul class="dropdown arrow-top" style="height:400px;">
-				            	<li><a  id="Action"  onclick="newpage(this.id)">Phim hành động</a></li>
-                      <li><a  id="Adventure"  onclick="newpage(this.id)">Phim phiêu lưu</a></li>
-                      <li><a  id="Animation"  onclick="newpage(this.id)">Phim hoạt hình</a></li>
-                      <li><a  id="Children's" onclick="newpage(this.id)">Phim dành cho trẻ em </a></li>
-                      <li><a  id="Comedy" onclick="newpage(this.id)">Phim hài hước</a></li>
-                      <li><a  id="Crime" onclick="newpage(this.id)">Phim hình sự </a></li>
-                      <li><a  id="Documentary" onclick="newpage(this.id)">Phim tài liệu</a></li>
-                      <li><a  id="Drama" onclick="newpage(this.id)">Phim hài</a></li>
-                      <li><a  id="Fantasy" onclick="newpage(this.id)">Phim viễn tưởng</a></li>
-                      <li><a  id="Film-Noir" onclick="newpage(this.id)">Phim tội phạm Hollywood</a></li>
-                      <li><a  id="Horror" onclick="newpage(this.id)">Phim kinh dị (ma)</a></li>
-                      <li><a  id="Musical" onclick="newpage(this.id)">Phim âm nhạc</a></li>
-                      <li><a  id="Mystery" onclick="newpage(this.id)">Phim thần bí</a></li>
-                      <li><a  id="Romance" onclick="newpage(this.id)">Phim tình cảm</a></li>
-                      <li><a  id="Sci-Fi" onclick="newpage(this.id)">Phim khoa học viễn tưởng</a></li>
-                      <li><a  id="Thriller" onclick="newpage(this.id)">Phim kinh dị</a></li>
-                      <li><a  id="War" onclick="newpage(this.id)">Phim chiến tranh</a></li>
-                      <li><a  id="Western" onclick="newpage(this.id)">Phim viễn tây</a></li>
+                    
+                      <ul class="dropdown arrow-top " style="height:400px;">
+                        <li><a  id="Action"  onclick="newpage(this.id)">Phim hành động</a></li>
+                        <li><a  id="Adventure"  onclick="newpage(this.id)">Phim phiêu lưu</a></li>
+                        <li><a  id="Animation"  onclick="newpage(this.id)">Phim hoạt hình</a></li>
+                        <li><a  id="Children" onclick="newpage(this.id)">Phim dành cho trẻ em </a></li>
+                        <li><a  id="Comedy" onclick="newpage(this.id)">Phim hài hước</a></li>
+                        <li><a  id="Crime" onclick="newpage(this.id)">Phim hình sự </a></li>
+                        <li><a  id="Documentary" onclick="newpage(this.id)">Phim tài liệu</a></li>
+                        <li><a  id="Drama" onclick="newpage(this.id)">Phim hài</a></li>
+                        <li><a  id="Fantasy" onclick="newpage(this.id)">Phim viễn tưởng</a></li>
+                        <li><a  id="Film-Noir" onclick="newpage(this.id)">Phim tội phạm Hollywood</a></li>
+                        <li><a  id="Horror" onclick="newpage(this.id)">Phim kinh dị (ma)</a></li>
+                        <li><a  id="Musical" onclick="newpage(this.id)">Phim âm nhạc</a></li>
+                        <li><a  id="Mystery" onclick="newpage(this.id)">Phim thần bí</a></li>
+                        <li><a  id="Romance" onclick="newpage(this.id)">Phim tình cảm</a></li>
+                        <li><a  id="Sci-Fi" onclick="newpage(this.id)">Phim khoa học viễn tưởng</a></li>
+                        <li><a  id="Thriller" onclick="newpage(this.id)">Phim kinh dị</a></li>
+                        <li><a  id="War" onclick="newpage(this.id)">Phim chiến tranh</a></li>
+                        <li><a  id="Western" onclick="newpage(this.id)">Phim viễn tây</a></li>
 
-                     
-                    </ul>
+                      </ul>
+                 
                   </li>
-                  <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
+                  
                   <li class="has-children">
                     <a href="#about-section" class="nav-link">Xin chào <?php echo $_SESSION['Username'] ?></a>
                     <ul class="dropdown arrow-top">
@@ -224,43 +224,7 @@
 
   });
 </script>
-<!-- end load pagination -->
 
-<!-- onclick genres  -->
-
-
-<!-- 
-<script>
-   $(document).ready(function(){
-    newpage();
-    });
-    function newpage(clicked_id)
-    {
-      $temp  = clicked_id;
-      // window.location.href = "fetch_genres.php?id="+$temp;
-
-
-      function load_data(query)
-      {
-        $.ajax({
-        url:"fetch_genres.php",
-        method:"POST",
-        data:{query:query},
-        success:function(data)
-        {
-            $('#autoWidth').html(data);
-        }
-        });
-
-      }
-      load_data($temp)
-
-    //   $(document).ready(function(){
-    //     load_data();
-    // });
-    }
-
-</script>	 -->
 
 
 
@@ -317,6 +281,7 @@ $(document).ready(function(){
 </script> 
 <!-- end event search -->
 
+
 <!-- click hide search  -->
 <script>
 function hide_search() {
@@ -325,14 +290,20 @@ function hide_search() {
 }
 </script>
 <!--  end click hide search  -->
-<!-- click hide search  -->
+
+
 <script>
-function hide_search() {
-  var x = document.getElementById("result");
-    x.style.display = "none";
-}
-</script>
-<!--  end click hide search  -->
+
+    function newpage(clicked_id)
+    {
+      $temp  = clicked_id;
+      window.location.href = "genres.php?id="+$temp;
+
+    }
+
+</script>	
+<!-- end onclick genres  -->
+
 
 <script>
 // When the user scrolls down 50px from the top of the document, resize the header's font size

@@ -3,7 +3,7 @@
 include './conn.php';
 $connect=conn();
 $output = '';
-if(isset($_POST["query"]))
+if(isset($_POST["query"] ))
 {
     $search = mysqli_real_escape_string($connect, $_POST["query"]);
     $query = "
@@ -33,7 +33,7 @@ if(mysqli_num_rows($result) > 0)
     {
         $num = $row[0];
         $output .= '
-        <tr >
+        <tr style="cursor:pointer;" >
                 <td><img id="'.$num.'" onclick=detail(this.id) style="height:50px;width:50px;"src="'.$row["url"].'"></img></td>
                 <td id="'.$num.'" onclick=detail(this.id)>'.$row["Title"].'</td>
                 <td id="'.$num.'" onclick=detail(this.id)>'.$row["Genres"].'</td>

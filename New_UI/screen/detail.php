@@ -108,7 +108,7 @@
                       
                 </li> 
                 <li><a href="home.php" class="nav-link">Trang chính</a></li>
-                  
+				<li><a href="all_movie.php" class="nav-link">Danh sách phim</a></li>
                   <li class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
                     <ul class="dropdown arrow-top" style="height:400px;">
@@ -134,7 +134,7 @@
                      
                     </ul>
                   </li>
-                  <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
+              
                   <li class="has-children">
                     <a href="#about-section" class="nav-link">Xin chào <?php echo $_SESSION['Username'] ?></a>
                     <ul class="dropdown arrow-top">
@@ -758,7 +758,7 @@ else{?>
                       
                 </li> 
                 <li><a href="home.php" class="nav-link">Trang chính</a></li>
-                
+                <li><a href="all_movie.php" class="nav-link">Danh sách phim</a></li>
                   <li class="has-children">
                     <a href="#about-section" class="nav-link">Thể loại</a>
                     <ul class="dropdown arrow-top" style="height:400px;">
@@ -785,7 +785,7 @@ else{?>
                     </ul>
                   </li>
 				 
-                  <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li>
+            
 				  <li class="btn-login" ><a <?php echo' href="login_detail.php?id='.$_GET["id"].'"'?> id="login" class="nav-link " >Đăng nhập</a></li>
 
                   
@@ -858,8 +858,8 @@ else{?>
 													<ul class="card__meta">
 														<li><span>Thể loại:</span> <a href="#">'.$row["Genres"].'</a></li>
 														<li><span>Năm phát hành:</span> 2017</li>
-														<li><span>Running time:</span> 120 min</li>
-														<li><span>Country:</span> <a href="#">USA</a> </li>
+														<li><span>Thời gian phát:</span> 120 min</li>
+														<li><span>Quốc gia:</span> <a href="#">USA</a> </li>
 													</ul>
 
 													<div class="card__description card__description--details">
@@ -1248,5 +1248,20 @@ function detail(clicked_id)
 }
 </script>	
 <!-- end onclick detail  -->
+
+
+<!-- onclick genres  -->
+
+<script>
+
+    function newpage(clicked_id)
+    {
+      $temp  = clicked_id;
+      window.location.href = "genres.php?id="+$temp;
+
+    }
+
+</script>	
+<!-- end onclick genres  -->
 </html>
 

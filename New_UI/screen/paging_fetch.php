@@ -37,7 +37,7 @@ $total_filter_data = $statement->rowCount();
 // ';
 $output = '
 <div style=width:100%;height:40px ;>
-  <p style=width:20%;height:100%;padding-left:20px;margin-left:10px;background:rgb(112,186,245);border-top-right-radius:5px;border-bottom-right-radius:10px;font-weight:bold;font-size:25px;color:black;>Tất cả phim</p>
+  <p style=width:20%;height:100%;padding-left:20px;margin-left:10px;background:rgb(112,186,245);border-top-right-radius:5px;border-bottom-right-radius:10px;font-weight:bold;font-size:25px;color:white;>Tất cả phim</p>
 </div>
 ';
 if($total_data > 0)

@@ -383,3 +383,7 @@ a {
   color:white;
 }
 
+
+a .nav-link:hover {
+  color:red;
+}
