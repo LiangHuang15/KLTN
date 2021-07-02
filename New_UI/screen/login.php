@@ -39,7 +39,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="../images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+          <img style="opacity:0.6;" src="https://previews.123rf.com/images/alexandertrou/alexandertrou1801/alexandertrou180100028/94296423-movie-time-vector-illustration-cinema-poster-concept-on-red-round-background-composition-with-popcor.jpg" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">

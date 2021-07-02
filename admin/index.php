@@ -419,7 +419,7 @@ fill: {
 plotOptions: {
 },
 series: [{
-    name: 'sales',
+    name: 'đánh giá',
     // data: [9,20,300,20,10,20,30,20,10,20,30,20]
     data: passedArray.reverse()
 }],

@@ -60,7 +60,7 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
                             </a>
                             <ul class="submenu ">
                             <li class="submenu-item ">
-                                    <a href="all_movies.php">Tất cả phim</a>
+                                    <a href="all_movies.php">Danh sách phim</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="add_new_movie.php">Thêm phim mới</a>
@@ -75,11 +75,11 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="all_users.php">Người dùng</a>
+                                    <a href="all_users.php">Danh sách người dùng</a>
                                 </li>
-                                <li class="submenu-item ">
+                                <!-- <li class="submenu-item ">
                                     <a href="#">Thêm người dùng</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
                         <li class="sidebar-item  has-sub">
@@ -98,7 +98,7 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="#" class='sidebar-link'>
+                            <a href="logout.php" class='sidebar-link'>
                             <i class="fas fa-sign-out-alt"></i>
                                 <span>Đăng xuất</span>
                             </a>
@@ -156,12 +156,12 @@ if(isset($_SESSION["UserID_admin"]) && isset($_SESSION["Username_admin"]))
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <h6 class="dropdown-header">Hello, John!</h6>
+                                        <h6 style="font-weight:bold;" class="dropdown-header">Xin chào, <?php echo $admin?>!</h6>
                                     </li>
-                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
+                                    <!-- <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
                                             Profile</a></li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                                            Settings</a></li>
+                                            Settings</a></li> -->
 
                                         <hr class="dropdown-divider">
                                     </li>

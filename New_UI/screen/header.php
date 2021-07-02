@@ -1,3 +1,14 @@
+<?php
+        session_start();
+        if(isset($_SESSION['UserID']) && isset($_SESSION['Username']))
+        {
+			header("Location: home.php");
+			exit();
+		}
+		else{
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -200,3 +211,7 @@ function hide_search() {
 
 
 
+
+<?php
+}
+?>

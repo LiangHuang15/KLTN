@@ -14,7 +14,7 @@
     
 
 <div class="page-heading d-flex">
-                <h3>Sửa thông tin phim</h3>
+                <h3 style="font-weight:bold;">Cập nhật thông tin phim</h3>
 
             </div>
 <div class="content">
@@ -46,6 +46,14 @@
                                         <div class="row d-block">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-group row align-items-center">
+                                            <div class="col-lg-2 col-3">
+                                                    <h6 class="col-form-label">ID</h6>
+                                                </div>
+                                                <div class="col-lg-10 col-9">
+                                                    <input type="text" id="movie-name" class="form-control" name="fname" value="<?php echo $_GET['id'] ?>" readonly="readonly"
+                                                        >
+                                                </div>
+                                                <br>
                                                 <div class="col-lg-2 col-3">
                                                     <h6 class="col-form-label">Tên phim</h6>
                                                 </div>

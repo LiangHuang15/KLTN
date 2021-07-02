@@ -53,23 +53,47 @@
 
             <script src="assets/vendors/chartjs/Chart.min.js"></script>
     <!-- <script src="assets/js/pages/ui-chartjs.js"></script> -->
-    <script>
+
+<script>
 
 
+
+<?php
+include './conn.php';
+$connect=conn();
+$sql="select  count(*) as count ,Title from ratings,movies  where ratings.MovieID=movies.MovieID group by ratings.MovieID ORDER by count desc limit 5";
+$ratings_list=[];
+$name_list=[];
+$i = 0;
+$result = mysqli_query($connect, $sql);
+if (mysqli_num_rows($result) > 0) {
+while($row = mysqli_fetch_assoc($result))
+{
+    $ratings_list[$i]=$row['count'];
+    $name_list[$i]=$row['Title'];
+    $i++ ;
+}
+}else {
+    echo "0 results";
+}	 
+?>
+
+let ratings_list =  <?php echo json_encode($ratings_list); ?>;
+let name_list =  <?php echo json_encode($name_list); ?>;
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: name_list,
         datasets: [{
-            label: 'Thể loại phim được xem nhiều nhất',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Phim được xem nhiều nhất',
+            data: ratings_list,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
+                // 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
@@ -77,7 +101,7 @@ var myChart = new Chart(ctx, {
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
+                // 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
             borderWidth: 1
@@ -94,23 +118,23 @@ var myChart = new Chart(ctx, {
 
 
 <?php
-     include './conn.php';
-     $connect=conn();
-     $sql="select  count(*) as count ,Title from ratings,movies  where ratings.MovieID=movies.MovieID group by ratings.MovieID ORDER by count desc limit 5";
-     $ratings_list=[];
-     $name_list=[];
-     $i = 0;
-     $result = mysqli_query($connect, $sql);
-     if (mysqli_num_rows($result) > 0) {
-     while($row = mysqli_fetch_assoc($result))
-    {
-        $ratings_list[$i]=$row['count'];
-        $name_list[$i]=$row['Title'];
-        $i++ ;
-    }
-    }else {
-        echo "0 results";
-    }	
+    //  include './conn.php';
+    //  $connect=conn();
+    //  $sql="select  count(*) as count ,Title from ratings,movies  where ratings.MovieID=movies.MovieID group by ratings.MovieID ORDER by count desc limit 5";
+    //  $ratings_list=[];
+    //  $name_list=[];
+    //  $i = 0;
+    //  $result = mysqli_query($connect, $sql);
+    //  if (mysqli_num_rows($result) > 0) {
+    //  while($row = mysqli_fetch_assoc($result))
+    // {
+    //     $ratings_list[$i]=$row['count'];
+    //     $name_list[$i]=$row['Title'];
+    //     $i++ ;
+    // }
+    // }else {
+    //     echo "0 results";
+    // }	
 ?>
 var chartColors = {
     red: 'rgb(255, 99, 132)',
@@ -123,8 +147,7 @@ var chartColors = {
     grey: '#EBEFF6'
 };
 
-let ratings_list =  <?php echo json_encode($ratings_list); ?>;
-let name_list =  <?php echo json_encode($name_list); ?>;
+
 var ctxBar = document.getElementById("bar").getContext("2d");
 var myBar = new Chart(ctxBar, {
     type: 'bar',

@@ -158,18 +158,18 @@
 		{
 			echo '<li class="item-a">
 			<!--slider-box-->
-				<div id="'.$row["MovieID"].'" onclick=detail(this.id) style="background-image: url('.$row["url"].');" class="box_carousel">
-				<p class="marvel">'.$row["Title"].'</p>
-				<!--model-->
-				<!-- <img src="img/Ant-Man.png" class="model"> -->
-				<!--details-->
-				<div class="details_carousel">
-					<span class="cat">'.$row["Genres"].'</span>
-					<i class="fas fa-star" style="color:yellow"><h5>'.$row["avg_ratings"].'/5</h5></i>
-				
-					<p>Bruce Bayne invite deadpool to kill the enemy how make distrub bat To the Kill The Anymens How MaKE him will be ie.</p>
-				</div>
-				
+				<div id="'.$row["MovieID"].'" onclick=detail(this.id) style="background-image: url('.$row["url"].'); " class="box_carousel">
+         <div style="width:100%;height:100%;position:relative; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); ">
+              <div style="position:absolute; bottom:0;padding:10px;">
+                <p class="marvel" style="" >'.$row["Title"].'</p>
+                <div class="details_carousel" style=" border-radius:5px; ;">
+                  <span class="cat" style="color:white;background:rgb(0,122,204); padding:5px;border-radius:5px;">'.$row["Genres"].'</span>
+                  <br>
+                  <i class="fas fa-star" style="color:yellow"> <span>'.$row["avg_ratings"].'/5<span></i>
+                  <br>
+                </div>
+              </div>
+          </div>
 				</div>
 		</li>';
 		}

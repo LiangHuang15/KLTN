@@ -79,7 +79,7 @@
                     }
                 }
              
-            echo'<span style="vertical-align: middle; ">Kết quả tìm kiếm theo: '.$genres.'<span>';
+            echo'<span style="vertical-align: middle; font-weight:bold; ">Kết quả tìm kiếm theo: '.$genres.'<span>';
             ?>
         </div>
     </div>

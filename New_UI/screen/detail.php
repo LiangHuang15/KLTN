@@ -210,7 +210,7 @@
 													</div>
 
 													<ul class="card__meta">
-														<li><span>Thể loại:</span> <a href="#">Action</a></li>
+														<li><span>Thể loại:</span> <a href="#">'.$row["Genres"].'</a></li>
 														<li><span>Năm phát hành:</span> 2017</li>
 														<li><span>Running time:</span> 120 min</li>
 														<li><span>Country:</span> <a href="#">USA</a> </li>
@@ -856,7 +856,7 @@ else{?>
 													</div>
 
 													<ul class="card__meta">
-														<li><span>Thể loại:</span> <a href="#">Action</a></li>
+														<li><span>Thể loại:</span> <a href="#">'.$row["Genres"].'</a></li>
 														<li><span>Năm phát hành:</span> 2017</li>
 														<li><span>Running time:</span> 120 min</li>
 														<li><span>Country:</span> <a href="#">USA</a> </li>
@@ -1074,79 +1074,7 @@ else{?>
 				</div>
 
 				<!-- sidebar -->
-				<div class="col-12 col-lg-4 col-xl-4">
-					<div class="row">
-						<!-- section title -->
-						<div class="col-12">
-							<h2 class="section__title section__title--sidebar">Dành cho bạn . . .</h2>
-						</div>
-						<!-- end section title -->
-
-						<!-- card -->
-						<div class="col-6 col-sm-4 col-lg-6">
-							<div class="card" style="background-color: #fff; border:0; border-radius:3px; box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-								<div class="card__cover">
-									<img src="https://m.media-amazon.com/images/M/MV5BYzcyMDY2YWQtYWJhYy00OGQ2LTk4NzktYWJkNDYwZWJmY2RjXkEyXkFqcGdeQXVyMTA0MjU0Ng@@._V1_.jpg" alt="">
-									<a href="#" class="card__play">
-									<i class="fas fa-play"></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-									<span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
-									</span>
-									<span class="card__rate"><i class="fas fa-star"></i>8.4</span>
-								</div>
-							</div>
-						</div>
-						<!-- end card -->
-						<!-- card -->
-						<div class="col-6 col-sm-4 col-lg-6">
-							<div class="card" style="background-color: #fff; border:0; border-radius:3px; box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-								<div class="card__cover" >
-									<img src="https://upload.wikimedia.org/wikipedia/en/f/f2/The_American_President_%28movie_poster%29.jpg" alt="">
-									<a href="#" class="card__play">
-										<i class="fas fa-play"></i></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-									<span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
-									</span>
-									<span class="card__rate"><i class="fas fa-star"></i>8.4</span>
-								</div>
-							</div>
-						</div>
-						<!-- end card -->
-						<!-- card -->
-						<div class="col-6 col-sm-4 col-lg-6">
-							<div class="card" style="background-color: #fff; border:0; border-radius:3px; box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-								<div class="card__cover">
-									<img src="https://m.media-amazon.com/images/M/MV5BYzcyMDY2YWQtYWJhYy00OGQ2LTk4NzktYWJkNDYwZWJmY2RjXkEyXkFqcGdeQXVyMTA0MjU0Ng@@._V1_.jpg" alt="">
-									<a href="#" class="card__play">
-										<i class="fas fa-play"></i></i>
-									</a>
-								</div>
-								<div class="card__content">
-									<h3 class="card__title"><a href="#">I Dream in Another Language</a></h3>
-									<span class="card__category">
-										<a href="#">Action</a>
-										<a href="#">Triler</a>
-									</span>
-									<span class="card__rate"><i class="fas fa-star"></i>8.4</span>
-								</div>
-							</div>
-						</div>
-						<!-- end card -->
-
-
-					
-					</div>
-				</div>
+				
 				<!-- end sidebar -->
 			</div>
 		</div>

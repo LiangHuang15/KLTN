@@ -66,11 +66,11 @@ a{
 	margin-top: 20px;
 }
 .marvel{
-	color:#32323e;
-	font-weight: bold;
+	color:rgb(184, 182, 182);
 	letter-spacing: 2px;
 	font-family: bebas kai;
 	font-size: 25px;
+	font-weight:bold; margin-top:10px;border-radius:5px;
 }
 .logo{
 	height: 60px;
@@ -82,7 +82,7 @@ a{
 	transition: all ease 0.3s;
 }
 .box_carousel:hover .marvel{
-	color:#c0292b;
+	color:white;
 	transition: all ease 0.5s;
 }
 /*--responsive for mobile phone--*/

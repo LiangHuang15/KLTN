@@ -42,26 +42,29 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Line Chart</h4>
+                                    <h4>Tổng số tài khoản được tạo qua các năm</h4>
                                 </div>
                                 <div class="card-body">
                                     <div id="line"></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Bar Chart</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div id="bar"></div>
-                                </div>
-                            </div>
-                        </div>
+                    
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                              <div class="card">
+                                  <div class="card-header">
+                                      <h4>Tỉ lệ đánh giá trong 12 tháng gần nhất</h4>
+                                  </div>
+                                  <div class="card-body">
+                                      <div id="bar"></div>
+                                  </div>
+                              </div>
+                          </div>
                     </div>
                     <!-- <div class="row">
                         <div class="col-12">
@@ -82,6 +85,28 @@
     <!-- <script src="assets/js/pages/ui-apexchart.js"></script> -->
 
 
+
+  <?php
+  //   include './conn.php';
+  //   $connect=conn();
+  //   $sql="SELECT count(*) as number  year(from_unixtime(Timestamp)) as nam FROM ratings
+  //    GROUP by  year(from_unixtime(Timestamp))
+  //    ORDER by year(from_unixtime(Timestamp)) desc limit 12";
+  //   $ratings_list=[];
+  //   $name_list=[];
+  //   $i = 0;
+  //   $result = mysqli_query($connect, $sql);
+  //   if (mysqli_num_rows($result) > 0) {
+  //   while($row = mysqli_fetch_assoc($result))
+  // {
+  //     $ratings_list[$i]=$row['count'];
+  //     $name_list[$i]=$row['Title'];
+  //     $i++ ;
+  // }
+  // }else {
+  //     echo "0 results";
+  // }	
+?>
 <script>
 
 var lineOptions = {
@@ -390,20 +415,65 @@ yaxis: {
     },
 },
 };
+<?php
+    include './conn.php';
+    $connect=conn();
+    $list_rating = [];
+    $list_months =[];
+    for($i= 1; $i<6;$i++)
+    {
+        $list_rating_=[];
+        $sql="SELECT count(*) as total_ratings ,month(from_unixtime(Timestamp)) as thang, year(from_unixtime(Timestamp)) as nam FROM ratings where Rating=$i
+        GROUP by month(from_unixtime(Timestamp)), year(from_unixtime(Timestamp))
+        ORDER by year(from_unixtime(Timestamp)) desc,month(from_unixtime(Timestamp))desc limit 5";
+        $result = mysqli_query($connect, $sql);
+        $j=0;
+        if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result))
+        {
+          $list_rating_[$j]=$row['total_ratings'];
+          $list_months[$j]= $row['thang']."/".$row['nam'];  
+          $j++ ;
+        }
+        $list_rating[$i]= $list_rating_;
+        }
+        else
+        {
+          $list_rating_[$j] = 0;
+        }
+    }
+    
+    
+?>
+let listRating =  <?php echo json_encode($list_rating); ?>;
+let listMonths =  <?php echo json_encode($list_months); ?>;
 
+console.log(listRating);
 var barOptions = {
   series: [
     {
-      name: "Net Profit",
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+      name: "rating 1 ",
+      // data: [listRating[1][0],listRating[2][0],listRating[3][0],listRating[4][0],listRating[5][0] ]
+      data: [listRating[1][4],listRating[2][4],listRating[3][4],listRating[4][4],listRating[5][4] ]
     },
     {
-      name: "Revenue",
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+      name: "rating 2 ",
+      // data: [listRating[1][1],listRating[2][1],listRating[3][1],listRating[4][1],listRating[5][1] ]
+      data: [listRating[1][3],listRating[2][3],listRating[3][3],listRating[4][3],listRating[5][3] ]
     },
     {
-      name: "Free Cash Flow",
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+      name: "rating 3 ",
+      data: [listRating[1][2],listRating[2][2],listRating[3][2],listRating[4][2],listRating[5][2] ]
+    },
+    {
+      name: "rating 4 ",
+      // data: [listRating[1][3],listRating[2][3],listRating[3][3],listRating[4][3],listRating[5][3] ]
+       data: [listRating[1][1],listRating[2][1],listRating[3][1],listRating[4][1],listRating[5][1] ]
+    },
+    {
+      name: "rating 5 ",
+      // data: [listRating[1][4],listRating[2][4],listRating[3][4],listRating[4][4],listRating[5][4] ]
+            data: [listRating[1][0],listRating[2][0],listRating[3][0],listRating[4][0],listRating[5][0] ]
     },
   ],
   chart: {
@@ -426,7 +496,7 @@ var barOptions = {
     colors: ["transparent"],
   },
   xaxis: {
-    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    categories: listMonths.reverse(),
   },
   yaxis: {
     title: {
