@@ -48,6 +48,15 @@
                         </div>
                         
                     </div>
+                    <!-- donut -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                            <canvas id="donutChart" width="400" height="100"></canvas>
+                            </div>
+                        </div>
+                        
+                    </div>
                 </section>
             </div>
 
@@ -330,6 +339,32 @@ var myline = new Chart(line, {
     }
 });
 
+
+
+
+/// Donut
+
+var ctx = document.getElementById('donutChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: [
+    'Red',
+    'Blue'
+  ],
+  datasets: [{
+    label: 'Tỉ lệ giới tính',
+    data: [300, 50],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+    ],
+    hoverOffset: 4
+  }]
+    },
+    
+});
+
 let ctx1 = document.getElementById("canvas1").getContext("2d");
 let ctx2 = document.getElementById("canvas2").getContext("2d");
 let ctx3 = document.getElementById("canvas3").getContext("2d");
@@ -338,13 +373,6 @@ var lineChart1 = new Chart(ctx1, config1);
 var lineChart2 = new Chart(ctx2, config2);
 var lineChart3 = new Chart(ctx3, config3);
 var lineChart4 = new Chart(ctx4, config4);
-
-
-
-
-
-
-
 </script>
 
 <?php include("footer.php");?>
