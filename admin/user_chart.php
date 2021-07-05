@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Tỉ lệ số người dùng là nữ</h4>
@@ -39,8 +39,19 @@
                                     <div id="radialGradient"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
+
+                     <!-- donut -->
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                            <canvas id="donutChart" width="400" height="100"></canvas>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
                     <!-- <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -80,7 +91,9 @@
                     </div> -->
                 </section>
             </div>
+    
             <script src="assets/vendors/dayjs/dayjs.min.js"></script>
+  
     <script src="assets/vendors/apexcharts/apexcharts.js"></script>
     <!-- <script src="assets/js/pages/ui-apexchart.js"></script> -->
 
@@ -90,25 +103,7 @@
 
 
 
-<?php
-    // include './conn.php';
-    // $connect=conn();
-    // $sql_="select count(*) as count from users where Age<20";
-    // $result_ = mysqli_query($connect, $sql_);
-    // $row_= mysqli_fetch_assoc($result_);
-    // $age_20 = $row_["count"];
-    // $sql1="select count(*) as count from users where Age>=20 and Age<40";
-    // $result1 = mysqli_query($connect, $sql1);
-    // $row1= mysqli_fetch_assoc($result1);
-    // $age_40 = $row1['count'];
-    // $sql2="select count(*) as count from users where Age>=40 and Age<60";
-    // $result12 = mysqli_query($connect, $sql2);
-    // $row2= mysqli_fetch_assoc($result2);
-    // $age_60 = $row2['count'];
-?>
-const age_20 =  <?php echo json_encode($age_20); ?>;
-// const age_40 =  <?php echo json_encode($age_40); ?>;
-// const age_60 =  <?php echo json_encode($age_60); ?>;
+
 
 var lineOptions = {
   chart: {
@@ -528,7 +523,7 @@ $sql="select count(*) as female from users where Gender='F'";
 const number_female =  <?php echo json_encode($female); ?>;
 const total =  <?php echo json_encode($total); ?>;
 var radialGradientOptions = {
-  series: [(parseInt(number_female)/parseInt(total))*100],
+  series: [75],
   chart: {
     height: 350,
     type: "radialBar",
@@ -673,6 +668,10 @@ var radialBarOptions = {
   },
   labels: ["Apples", "Oranges", "Bananas", "Berries"],
 };
+
+
+
+
 var bar = new ApexCharts(document.querySelector("#bar"), barOptions);
 var line = new ApexCharts(document.querySelector("#line"), lineOptions);
 var candle = new ApexCharts(document.querySelector("#candle"), candleOptions);
@@ -686,6 +685,55 @@ bar.render();
 line.render();
 
 
+</script>
+          <script src="assets/vendors/chartjs/Chart.min.js"></script>
+
+<?php
+$sql="select count(*) as female from users where Gender='F'";
+    $result = mysqli_query($connect, $sql);
+    $row= mysqli_fetch_assoc($result);
+    $female = $row['female'];
+    $sql1="select count(*) as total from users ";
+    $result1 = mysqli_query($connect, $sql1);
+    $row1= mysqli_fetch_assoc($result1);
+    $total = $row1['total'];
+?>
+<script>
+
+const number_female1 =  <?php echo json_encode($female); ?>;
+const total1 =  <?php echo json_encode($total); ?>;
+          /// Donut
+
+var ctx = document.getElementById('donutChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Nữ','Nam'],
+
+  datasets: [{
+    label: 'Tỉ lệ giới tính',
+    data: [(parseInt(number_female1)/parseInt(total1)*100).toFixed(0),(100-(parseInt(number_female1)/parseInt(total1)*100)).toFixed(0)],
+
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+    ],
+    hoverOffset: 4
+  }]
+    },
+    
+});
+
+
+
+let ctx1 = document.getElementById("canvas1").getContext("2d");
+let ctx2 = document.getElementById("canvas2").getContext("2d");
+let ctx3 = document.getElementById("canvas3").getContext("2d");
+let ctx4 = document.getElementById("canvas4").getContext("2d");
+var lineChart1 = new Chart(ctx1, config1);
+var lineChart2 = new Chart(ctx2, config2);
+var lineChart3 = new Chart(ctx3, config3);
+var lineChart4 = new Chart(ctx4, config4);
 
 </script>
 <?php include("footer.php");?>

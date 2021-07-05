@@ -42,6 +42,10 @@
                    $_SESSION['UserID'] = $row['UserID'];
                    $_SESSION['Username'] = $row['Username'];
                    header("Location: home.php");
+                   // run python file 
+                
+               
+          
                    exit();
                 } 
             }
