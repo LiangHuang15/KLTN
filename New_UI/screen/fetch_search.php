@@ -3,13 +3,13 @@
 include './conn.php';
 $connect=conn();
 $output = '';
-if(isset($_POST["query"] ))
+if(isset($_POST["query"])&&($_POST["query"]!=''))
 {
     $search = mysqli_real_escape_string($connect, $_POST["query"]);
     $query = "
     select * from movies where Title like '%$search%' 
     ";
-}
+
 // else
 // {
 //     $query = "
@@ -43,9 +43,10 @@ if(mysqli_num_rows($result) > 0)
     }
     echo $output;
 }
+}
 else
 {
-    echo 'Data Not Found';
+    
 }
 
 ?>

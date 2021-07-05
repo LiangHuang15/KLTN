@@ -49,13 +49,13 @@
               <p class="mb-4">Đăng nhập để khám phá thêm nhiều bộ phim hấp dẫn</p>
             </div>
             <form action="check_login.php" method="post">
-              <div class="form-group first">
-                <label for="username">Tài khoản</label>
+              <div class="form-group first mb-2">
+                <label class="pl-2" for="username">Tài khoản</label>
                 <input type="text" class="form-control" name="username" id="username">
 
               </div>
               <div class="form-group last mb-4">
-                <label for="password">Mật khẩu</label>
+                <label  class="pl-2" for="password">Mật khẩu</label>
                 <input type="password" class="form-control" name="password" id="password">
                 
               </div>

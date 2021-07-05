@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../css/css_grid/style_grid.css">
     <!-- search bar -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <title>Demo Website</title>
+    <title>Demo Movie Website</title>
     <script type="text/javascript" src="../js/carousel_new/JQuery3.3.1.js"></script>
     <script type="text/javascript" src="../js/carousel_new/lightslider.js"></script>
 
@@ -120,7 +120,7 @@
                  
                   </li>
                   <!-- <li><a href="#services-section" class="nav-link">Về chúng tôi</a></li> -->
-                  <li class="btn-login" ><a href="login.php" id="login" class="nav-link " >Đăng nhập</a></li>
+                  <li class="btn-login" ><a href="login.php" id="login" class="nav-link " style="color: white !important;">Đăng nhập</a></li>
 
                   
                 </ul>

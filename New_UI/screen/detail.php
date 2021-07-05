@@ -39,7 +39,7 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="Dmitry Volkov">
-	<title>Demo Website</title>
+	<title>Demo Movie Website</title>
 
 </head>
 <?php
@@ -91,11 +91,11 @@
           <div class="row align-items-center position-relative">
 
 
-            <div class="site-logo col-1" >
+            <div class="site-logo col-2" >
               <a href="index.php" class="text-black"><span class="text-primary">movie</a>
             </div>
 
-            <div class="col-11 ml-auto d-none d-lg-block">
+            <div class="col-10 ml-auto d-none d-lg-block">
               <nav class="site-navigation text-right ml-auto " role="navigation">
 
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
@@ -786,7 +786,7 @@ else{?>
                   </li>
 				 
             
-				  <li class="btn-login" ><a <?php echo' href="login_detail.php?id='.$_GET["id"].'"'?> id="login" class="nav-link " >Đăng nhập</a></li>
+				  <li class="btn-login" ><a <?php echo' href="login_detail.php?id='.$_GET["id"].'"'?> id="login" class="nav-link " style="color:white !important">Đăng nhập</a></li>
 
                   
                 </ul>

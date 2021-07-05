@@ -157,7 +157,7 @@ function newpage(clicked_id)
 
 
 
-<div class="main" style="width:100%;height:950px;">
+<div class="main" style="width:100%;height:auto;">
     <div class="title" style="width:100%;height:6%;background:white;display:flex;">
         <div class="content_title" style="width:90%;height:60%;background:white; margin:auto;">
             <?php
@@ -254,7 +254,7 @@ function newpage(clicked_id)
 
     load_data(1);
 
-    function load_data(page, query = '')
+    function load_data(page, query)
     {
         var genres = <?php echo json_encode($_GET['id']); ?>;
       $.ajax({
@@ -286,7 +286,7 @@ else{
 
 
 <?php include("header.php")?>
-<div class="main" style="width:100%;height:950px;">
+<div class="main" style="width:100%;height:auto;">
     <div class="title" style="width:100%;height:6%;background:white;display:flex;">
         <div class="content_title" style="width:90%;height:60%;background:white; margin:auto;">
             <?php
@@ -380,22 +380,24 @@ else{
 <!-- load pagination -->
 <script>
   $(document).ready(function(){
-
+  
+    
     load_data(1);
-
-    function load_data(page, query = '')
+    function load_data(page, genres)
     {
         var genres = <?php echo json_encode($_GET['id']); ?>;
+      
       $.ajax({
         url:"fetch_genres.php",
         method:"POST",
-        data:{page:page, query:query,genres:genres},
+        data:{page:page, genres:genres},
         success:function(data)
         {
           $('#dynamic_content').html(data);
         }
       });
     }
+    
     $(document).on('click', '.page-link', function(){
       var page = $(this).data('page_number');
       var query = $('#search_box').val();
