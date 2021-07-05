@@ -84,9 +84,10 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li  class="div_search" >
           
-                    <form class="search-bar-form">
-                      <input class="search-input" type="search">
-                      <i class="fa fa-search icon-search-fa"></i>
+                    <form class="search-bar-form" action="search_item.php" method="post">
+                      <input class="search-input" type="search" name="search">
+                     <i class="fa fa-search icon-search-fa"></i>
+                     <input style="display:none;" type= "submit"> 
                     </form>
                       
                 </li> 

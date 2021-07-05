@@ -1,8 +1,18 @@
 <?php
+if(isset($_POST['search']))
+{
+
+$search=$_POST['search']; 
+}
+?>
+
+
+<?php
         session_start();
         if(isset($_SESSION['UserID']) && isset($_SESSION['Username']))
         {
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -51,12 +61,11 @@
               <span class="mx-md-2 d-inline-block"></span>
               <a href="#" class=""><span class="mr-2  icon-phone"></span> <span class="d-none d-md-inline-block">+84353817474</span></a>
 
-
               <div class="float-right">
 
-                <a href="https://twitter.com/office0ffrg" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
+                <a href="#" class=""><span class="mr-2  icon-twitter"></span> <span class="d-none d-md-inline-block">Twitter</span></a>
                 <span class="mx-md-2 d-inline-block"></span>
-                <a href="https://www.facebook.com/HTstestpage/" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
+                <a href="#" class=""><span class="mr-2  icon-facebook"></span> <span class="d-none d-md-inline-block">Facebook</span></a>
 
               </div>
 
@@ -154,120 +163,41 @@ function newpage(clicked_id)
 <script type="text/javascript" src="../js/carousel_new/lightslider.js"></script>
 <div style="margin-top:0px;padding:0px;">
 
+<?php 
 
+    if(isset($_POST['search']))
+    {
+        echo'<span style="vertical-align: middle; font-weight:bold; margin-left:25px;">Kết quả tìm kiếm theo: '.$_POST["search"].'<span>';
+    }
+?>
 
-
-
-<div class="main" style="width:100%;height:auto;">
-    <div class="title" style="width:100%;height:6%;background:white;display:flex;">
-        <div class="content_title" style="width:90%;height:60%;background:white; margin:auto;">
-            <?php
-                if(isset($_GET["id"])) 
-                {
-                    if($_GET["id"]=='Action')
-                    {
-                        $genres='Phim hành động';
-                    }
-                    elseif($_GET["id"]=='Adventure')
-                    {
-                        $genres='Phim phiêu lưu';
-                    }
-                    elseif($_GET["id"]=='Animation')
-                    {
-                        $genres='Phim hoạt hình';
-                    }
-                    elseif($_GET["id"]=="Children")
-                    {
-                        $genres='Phim dành cho trẻ em';
-                    }
-                    elseif($_GET["id"]=="Comedy")
-                    {
-                        $genres='Phim hài hước';
-                    }
-                    elseif($_GET["id"]=="Crime")
-                    {
-                        $genres='Phim hình sự';
-                    }
-                    elseif($_GET["id"]=="Documentary")
-                    {
-                        $genres='Phim tài liệu';
-                    }
-                    elseif($_GET["id"]=="Drama")
-                    {
-                        $genres='Phim hài';
-                    }
-                    elseif($_GET["id"]=="Fantasy")
-                    {
-                        $genres='Phim viễn tưởng';
-                    }
-                    elseif($_GET["id"]=="Film-Noir")
-                    {
-                        $genres='Phim tội phạm Hollywood';
-                    }
-                    elseif($_GET["id"]=="Horror")
-                    {
-                        $genres='Phim kinh dị (ma)';
-                    }
-                    elseif($_GET["id"]=="Musical")
-                    {
-                        $genres='Phim âm nhạc';
-                    }
-                    elseif($_GET["id"]=="Mystery")
-                    {
-                        $genres='Phim thần bí';
-                    }
-                    elseif($_GET["id"]=="Romance")
-                    {
-                        $genres='Phim tình cảm';
-                    }
-                    elseif($_GET["id"]=="Sci-Fi")
-                    {
-                        $genres='Phim khoa học viễn tưởng';
-                    }
-                    elseif($_GET["id"]=="Thriller")
-                    {
-                        $genres='Phim kinh dị';
-                    }
-                    elseif($_GET["id"]=="War")
-                    {
-                        $genres='Phim chiến tranh';
-                    }
-                    elseif($_GET["id"]=="Western")
-                    {
-                        $genres='Phim viễn tây';
-                    }
-                }
-             
-            echo'<span style="vertical-align: middle; font-weight:bold; ">Kết quả tìm kiếm theo: '.$genres.'<span>';
-            ?>
+<div class="content" style="width:100%;height:auto;background:white; display:flex;">
+        
+        <div id="dynamic_content" class="row" style="display:flex;width:94%;height:98%;margin:auto;background:white;">
+        
         </div>
-    </div>
-    <div class="content" style="width:100%;height:94%;background:white; display:flex;">
-        <div id="dynamic_content" class="row" style="display:flex;width:90%;height:94%;margin:auto;background:white;">
-        </div>
-    </div>
 </div>
-<?php include("footer.php") ?>
 
-<!-- load pagination -->
 <script>
   $(document).ready(function(){
 
+    
     load_data(1);
 
-    function load_data(page, genres = '')
+    function load_data(page, query )
     {
-        var genres = <?php echo json_encode($_GET['id']); ?>;
+    var query = <?php echo json_encode($_POST['search']); ?>; 
       $.ajax({
-        url:"fetch_genres.php",
+        url:"fetch_search_item.php",
         method:"POST",
-        data:{page:page, genres:genres},
+        data:{page:page, query:query},
         success:function(data)
         {
           $('#dynamic_content').html(data);
         }
       });
     }
+
     $(document).on('click', '.page-link', function(){
       var page = $(this).data('page_number');
       var query = $('#search_box').val();
@@ -275,142 +205,75 @@ function newpage(clicked_id)
       document.body.scrollTop = 0;
      document.documentElement.scrollTop = 0;
     });
+
+
   });
 </script>
-<!-- end load pagination -->
+
+
+
+<?php include("footer.php") ?>
+
+
 
 <?php
 }
 else{
     ?> 
+            <?php include("header.php") ?>
+            <?php 
 
-
-<?php include("header.php")?>
-<div class="main" style="width:100%;height:auto;">
-    <div class="title" style="width:100%;height:6%;background:white;display:flex;">
-        <div class="content_title" style="width:90%;height:60%;background:white; margin:auto;">
-            <?php
-                if(isset($_GET["id"])) 
+                if(isset($_POST['search']))
                 {
-                    if($_GET["id"]=='Action')
-                    {
-                        $genres='Phim hành động';
-                    }
-                    elseif($_GET["id"]=='Adventure')
-                    {
-                        $genres='Phim phiêu lưu';
-                    }
-                    elseif($_GET["id"]=='Animation')
-                    {
-                        $genres='Phim hoạt hình';
-                    }
-                    elseif($_GET["id"]=="Children")
-                    {
-                        $genres='Phim dành cho trẻ em';
-                    }
-                    elseif($_GET["id"]=="Comedy")
-                    {
-                        $genres='Phim hài hước';
-                    }
-                    elseif($_GET["id"]=="Crime")
-                    {
-                        $genres='Phim hình sự';
-                    }
-                    elseif($_GET["id"]=="Documentary")
-                    {
-                        $genres='Phim tài liệu';
-                    }
-                    elseif($_GET["id"]=="Drama")
-                    {
-                        $genres='Phim hài';
-                    }
-                    elseif($_GET["id"]=="Fantasy")
-                    {
-                        $genres='Phim viễn tưởng';
-                    }
-                    elseif($_GET["id"]=="Film-Noir")
-                    {
-                        $genres='Phim tội phạm Hollywood';
-                    }
-                    elseif($_GET["id"]=="Horror")
-                    {
-                        $genres='Phim kinh dị (ma)';
-                    }
-                    elseif($_GET["id"]=="Musical")
-                    {
-                        $genres='Phim âm nhạc';
-                    }
-                    elseif($_GET["id"]=="Mystery")
-                    {
-                        $genres='Phim thần bí';
-                    }
-                    elseif($_GET["id"]=="Romance")
-                    {
-                        $genres='Phim tình cảm';
-                    }
-                    elseif($_GET["id"]=="Sci-Fi")
-                    {
-                        $genres='Phim khoa học viễn tưởng';
-                    }
-                    elseif($_GET["id"]=="Thriller")
-                    {
-                        $genres='Phim kinh dị';
-                    }
-                    elseif($_GET["id"]=="War")
-                    {
-                        $genres='Phim chiến tranh';
-                    }
-                    elseif($_GET["id"]=="Western")
-                    {
-                        $genres='Phim viễn tây';
-                    }
+                    echo'<span style="vertical-align: middle; font-weight:bold; margin-left:25px; ">Kết quả tìm kiếm theo: '.$_POST["search"].'<span>';
                 }
-             
-            echo'<span style="vertical-align: middle; font-weight:bold; ">Kết quả tìm kiếm theo: '.$genres.'<span>';
             ?>
+            <div class="content" style="width:100%;height:auto;background:white; ">
+        
+        <div id="dynamic_content" class="row" style="display:flex;width:98%;height:98%;margin:auto;background:white;">
+        
         </div>
-    </div>
-    <div class="content" style="width:100%;height:94%;background:white; display:flex;">
-        <div id="dynamic_content" class="row" style="display:flex;width:90%;height:94%;margin:auto;background:white;">
-        </div>
-    </div>
 </div>
-<?php include("footer.php") ?>
 
-<!-- load pagination -->
 <script>
   $(document).ready(function(){
-  
+
     
     load_data(1);
-    function load_data(page, genres)
+
+    function load_data(page, query)
     {
-        var genres = <?php echo json_encode($_GET['id']); ?>;
-      
+        var query = <?php echo json_encode($_POST['search']); ?>; 
       $.ajax({
-        url:"fetch_genres.php",
+        url:"fetch_search_item.php",
         method:"POST",
-        data:{page:page, genres:genres},
+        data:{page:page, query:query},
         success:function(data)
         {
           $('#dynamic_content').html(data);
         }
       });
     }
-    
+
     $(document).on('click', '.page-link', function(){
       var page = $(this).data('page_number');
       var query = $('#search_box').val();
       load_data(page, query);
       document.body.scrollTop = 0;
-       document.documentElement.scrollTop = 0;
+     document.documentElement.scrollTop = 0;
     });
+
 
   });
 </script>
 
 
 
+<?php include("footer.php") ?>
+
+
     <?php
-    }
-?>
+}
+?> 
+
+
