@@ -143,7 +143,7 @@
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-4">
-                       <input style="width:100%;color:white;font-weight:bold;height:150%;border-radius:5px;background:rgb(0,108,210);" type="submit" value="Tạo tài khoản"></input>
+                       <input style="width:100%;color:white;font-weight:bold;height:150%;border-radius:5px;background-color:#007bff;border:none;" type="submit" value="Tạo tài khoản"></input>
                         <!-- <a   class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Tạo tài khoản</span>
                         </a> -->

@@ -713,7 +713,7 @@ var myChart = new Chart(ctx, {
   datasets: [{
     label: 'Tỉ lệ giới tính',
     data: [(parseInt(number_female1)/parseInt(total1)*100).toFixed(0),(100-(parseInt(number_female1)/parseInt(total1)*100)).toFixed(0)],
-
+  
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
