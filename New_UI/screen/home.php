@@ -82,9 +82,10 @@
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li  class="div_search" >
           
-                    <form class="search-bar-form"action="">
-                      <input class="search-input" type="search">
-                      <i class="fa fa-search icon-search-fa"></i>
+                <form class="search-bar-form" action="search_item.php" method="post">
+                      <input class="search-input" type="search" name="search">
+                     <i class="fa fa-search icon-search-fa"></i>
+                     <input style="display:none;" type= "submit"> 
                     </form>
                       
                 </li> 
@@ -158,7 +159,7 @@
 		{
 			echo '<li class="item-a">
 			<!--slider-box-->
-				<div id="'.$row["MovieID"].'" onclick=detail(this.id) style="background-image: url('.$row["url"].'); " class="box_carousel">
+				<div id="'.$row["MovieID"].'" ondblclick=detail(this.id) style="background-image: url('.$row["url"].'); " class="box_carousel">
          <div style="width:100%;height:100%;position:relative; background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1)); ">
               <div style="position:absolute; bottom:0;padding:10px;">
                 <p class="marvel" style="" >'.$row["Title"].'</p>
