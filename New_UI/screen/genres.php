@@ -254,13 +254,13 @@ function newpage(clicked_id)
 
     load_data(1);
 
-    function load_data(page, query = '')
+    function load_data(page, genres = '')
     {
         var genres = <?php echo json_encode($_GET['id']); ?>;
       $.ajax({
         url:"fetch_genres.php",
         method:"POST",
-        data:{page:page, query:query,genres:genres},
+        data:{page:page, genres:genres},
         success:function(data)
         {
           $('#dynamic_content').html(data);
@@ -274,7 +274,6 @@ function newpage(clicked_id)
       document.body.scrollTop = 0;
      document.documentElement.scrollTop = 0;
     });
-
   });
 </script>
 <!-- end load pagination -->
@@ -383,13 +382,13 @@ else{
 
     load_data(1);
 
-    function load_data(page, query = '')
+    function load_data(page, genres)
     {
         var genres = <?php echo json_encode($_GET['id']); ?>;
       $.ajax({
         url:"fetch_genres.php",
         method:"POST",
-        data:{page:page, query:query,genres:genres},
+        data:{page:page, genres:genres},
         success:function(data)
         {
           $('#dynamic_content').html(data);
