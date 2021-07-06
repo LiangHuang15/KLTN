@@ -498,7 +498,7 @@ var barOptions = {
   },
   yaxis: {
     title: {
-      text: "$ (thousands)",
+      text: "Lượt đánh giá",
     },
   },
   fill: {
@@ -507,7 +507,7 @@ var barOptions = {
   tooltip: {
     y: {
       formatter: function(val) {
-        return "$ " + val + " thousands";
+        return + val + " Lượt đánh giá";
       },
     },
   },
