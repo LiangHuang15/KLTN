@@ -109,7 +109,7 @@
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
                                     <?php
-                                          $sql ="select count(*) as count from users";
+                                          $sql ="select count(*) as count from users, ratings where MONTH(from_unixtime(Timestamp))= MONTH(CURRENT_DATE())and YEAR(from_unixtime(Timestamp))=YEAR(CURRENT_DATE()) and users.UserID=ratings.UserID ";
                                           $result = mysqli_query($connect, $sql);
                                               $row= mysqli_fetch_assoc($result);
                                               echo '
@@ -122,7 +122,7 @@
                                                   </div>
                                                   <div class="col-md-8">
                                                       <h6 class="text-muted font-semibold">Người dùng mới tháng này</h6>
-                                                      <h6 class="font-extrabold mb-0">80.000</h6>
+                                                      <h6 class="font-extrabold mb-0">'.$row["count"].'</h6>
                                                   </div>
                                               </div>
                                           </div>

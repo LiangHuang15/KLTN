@@ -45,7 +45,9 @@
                      <!-- donut -->
                      <div class="row">
                         <div class="col-md-12">
+                        <h4>Tỉ lệ giới tính</h4>
                             <div class="card">
+                            
                             <canvas id="donutChart" width="400" height="100"></canvas>
                             </div>
                         </div>

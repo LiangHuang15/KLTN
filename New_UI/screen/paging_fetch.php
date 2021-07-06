@@ -14,7 +14,7 @@ else
 {
   $start = 0;
 }
-
+$output="";
 $query = "
 SELECT * FROM movies 
 ";
