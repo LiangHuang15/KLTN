@@ -200,7 +200,7 @@ function newpage(clicked_id)
 
     $(document).on('click', '.page-link', function(){
       var page = $(this).data('page_number');
-      var query = $('#search_box').val();
+      var query = $('.search-input').val();
       load_data(page, query);
       document.body.scrollTop = 0;
      document.documentElement.scrollTop = 0;
@@ -257,7 +257,7 @@ else{
 
     $(document).on('click', '.page-link', function(){
       var page = $(this).data('page_number');
-      var query = $('#search_box').val();
+      var query = $('.search-input').val();
       load_data(page, query);
       document.body.scrollTop = 0;
      document.documentElement.scrollTop = 0;
@@ -268,6 +268,59 @@ else{
 </script>
 
 
+<script>
+function detail(clicked_id)
+{
+  $temp  = clicked_id;
+  window.location.href = "detail.php?id="+$temp;
+}
+</script>	
+<!-- end onclick detail  -->
+
+
+<!-- event search -->
+  
+
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query)
+  {
+      $.ajax({
+      url:"fetch_search.php",
+      method:"POST",
+      data:{query:query},
+      success:function(data)
+      {
+          var x = document.getElementById("result");
+          x.style.display = "block";
+          $('#result').html(data);
+      }
+      });
+
+  }
+  $('.search-input').keyup(function(){
+      var search = $(this).val();
+      if(search != '')
+      {
+          load_data(search);
+      }
+      else
+      {
+          load_data();
+      }
+      });
+});
+
+</script>
+<script>
+function hide_search() {
+  var x = document.getElementById("result");
+    x.style.display = "none";
+}
+</script>
 
 <?php include("footer.php") ?>
 

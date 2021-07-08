@@ -194,6 +194,43 @@ function newpage(clicked_id)
   });
 </script>
 
+<!-- event search -->
+  
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query)
+  {
+      $.ajax({
+      url:"fetch_search.php",
+      method:"POST",
+      data:{query:query},
+      success:function(data)
+      {
+          var x = document.getElementById("result");
+          x.style.display = "block";
+          $('#result').html(data);
+      }
+      });
+
+  }
+  $('.search-input').keyup(function(){
+      var search = $(this).val();
+      if(search != '')
+      {
+          load_data(search);
+      }
+      else
+      {
+          load_data();
+      }
+      });
+});
+
+</script> 
+<!-- end event search -->
 
 
 <?php include("footer.php") ?>
@@ -246,6 +283,43 @@ else{
 </script>
 
 
+<!-- event search -->
+  
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query)
+  {
+      $.ajax({
+      url:"fetch_search.php",
+      method:"POST",
+      data:{query:query},
+      success:function(data)
+      {
+          var x = document.getElementById("result");
+          x.style.display = "block";
+          $('#result').html(data);
+      }
+      });
+
+  }
+  $('.search-input').keyup(function(){
+      var search = $(this).val();
+      if(search != '')
+      {
+          load_data(search);
+      }
+      else
+      {
+          load_data();
+      }
+      });
+});
+
+</script> 
+<!-- end event search -->
 
 <?php include("footer.php") ?>
 

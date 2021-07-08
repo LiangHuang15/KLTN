@@ -1,14 +1,46 @@
+from __future__ import print_function 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.spatial.distance import cdist
+np.random.seed(11)
+import pandas as pd 
+import numpy as np
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000);
+N=500
+original_label = np.asarray([0]*N + [1]*N + [2]*N).T
+print(original_label)
+
+
+def kmeans_display(X, label):
+    K = np.amax(label) + 1
+    X0 = X[label == 0, :]
+    X1 = X[label == 1, :]
+    X2 = X[label == 2, :]
+    
+    plt.plot(X0[:, 0], X0[:, 1], 'b^', markersize = 4, alpha = .8)
+    plt.plot(X1[:, 0], X1[:, 1], 'go', markersize = 4, alpha = .8)
+    plt.plot(X2[:, 0], X2[:, 1], 'rs', markersize = 4, alpha = .8)
+
+    plt.axis('equal')
+    plt.plot()
+    plt.show()
+    
+kmeans_display(X, original_label)
+
 # -*- coding: utf-8 -*-
 # # numpy là thư viện của Python hỗ trợ tính toán mảng nhiều chiều 
 
 # # axis = 0 là tính trên các cột, axis = 1 là tính trên các dòng.
-
-import numpy as np
-a = np.array([[7,7,7,7],[1,2,3,4],[1,4,2,6],[10,10,1,8],[2,3,4,6],[11,4,8,4],[4,4,4,3]])
-print(a)
-b = a[[1,2,3],1].tolist()
-print(b)
-print(a[:,0])
+# a = np.array([[7,7,7,7],[1,2,3,4],[1,4,2,6],[10,10,1,8],[2,3,4,6],[11,4,8,4],[4,4,4,3]])
+# print(a)
+# print(a.shape[0])
+# b = a[[1,2,3],1].tolist()
+# print(a[1,:])
+# print(a[3])
+# print(b)
+# print(a[:,0])
 # # max lấy giá trị lớn nhất trong ma trận
 
 # # print(int(np.max(a))+1)

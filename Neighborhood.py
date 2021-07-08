@@ -143,13 +143,23 @@ class CF(object):
         """
         print all items which should be recommended for each user 
         """
+        # print ('Recommendation: ')
+        # for u in range(self.n_users):
+        #     recommended_items = self.recommend(u)
+        #     if self.uuCF:
+        #         print ('    Recommend item(s):', recommended_items, 'for user', u)
+        #     else: 
+        #         print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+
         print ('Recommendation: ')
-        for u in range(self.n_users):
-            recommended_items = self.recommend(u)
-            if self.uuCF:
-                print ('    Recommend item(s):', recommended_items, 'for user', u)
-            else: 
-                print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+        u = 500
+        # u = 1
+        recommended_items = self.recommend(u)
+        if self.uuCF:
+            print ('    Recommend item(s):', recommended_items, 'for user', u)
+        else: 
+            print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+
 
 # r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
 
@@ -195,7 +205,7 @@ print('rate_test',rate_test[:, :2])
 
 rs = CF(rate_train, k = 30, uuCF = 1)
 rs.fit()
-rs.print_recommendation()
+# rs.print_recommendation()
 n_tests = rate_test.shape[0]
 SE= 0 # squared error
 for n in range(n_tests):
@@ -203,6 +213,8 @@ for n in range(n_tests):
     SE += (pred - rate_test[n, 2])**2 
 RMSE = np.sqrt(SE/n_tests)
 print ('User-user CF, RMSE =', RMSE)
+
+
 # rs = CF(rate_train, k = 30, uuCF = 0)
 # rs.fit()
 
@@ -212,5 +224,5 @@ print ('User-user CF, RMSE =', RMSE)
 #     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
 #     SE += (pred - rate_test[n, 2])**2 
 
-# RMSE = np.sqrt(SE/n_tests)
+# RMSE = np.sqrt(SE/n_tests)s
 # print ('Item-item CF, RMSE =', RMSE)
