@@ -4,6 +4,10 @@ import math
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.model_selection import train_test_split
 from scipy import sparse 
+import json
+import time
+start_time = time.time()
+list =[]
 class CF(object):
     """docstring for CF"""
     def __init__(self, Y_data, k, dist_func = cosine_similarity, uuCF = 1):
@@ -29,14 +33,11 @@ class CF(object):
         self.Ybar_data = self.Y_data.copy()
         self.mu = np.zeros((self.n_users,))
         for n in range(self.n_users):
-            # row indices of rating done by user n
-            # since indices need to be integers, we need to convert
             ids = np.where(users == n)[0].astype(np.int32)
             # indices of all ratings associated with user n
             item_ids = self.Y_data[ids, 1] 
             # and the corresponding ratings 
             ratings = self.Y_data[ids, 2]
-            # take mean
             m = np.mean(ratings) 
             if np.isnan(m):
                 m = 0 # to avoid empty array and nan value
@@ -44,12 +45,7 @@ class CF(object):
             # normalize
             self.Ybar_data[ids, 2] = ratings - self.mu[n]
 
-        ################################################
-        # form the rating matrix as a sparse matrix. Sparsity is important 
-        # for both memory and computing efficiency. For example, if #user = 1M, 
-        # #item = 100k, then shape of the rating matrix would be (100k, 1M), 
-        # you may not have enough memory to store this. Then, instead, we store 
-        # nonzeros only, and, of course, their locations.
+    
         self.Ybar = sparse.coo_matrix((self.Ybar_data[:, 2],
             (self.Ybar_data[:, 1], self.Ybar_data[:, 0])), (self.n_items, self.n_users))
         self.Ybar = self.Ybar.tocsr()
@@ -110,14 +106,16 @@ class CF(object):
         have not been rated by u yet. 
         """
         ids = np.where(self.Y_data[:, 0] == u)[0]
-        items_rated_by_u = self.Y_data[ids, 1].tolist()              
+        items_rated_by_u = self.Y_data[ids, 1].tolist()     
+     
         recommended_items = []
         for i in range(self.n_items):
             if i not in items_rated_by_u:
                 rating = self.__pred(u, i)
                 if rating > 0: 
                     recommended_items.append(i)
-        
+
+        list.append(recommended_items)
         return recommended_items 
     
     def recommend2(self, u):
@@ -130,12 +128,14 @@ class CF(object):
         ids = np.where(self.Y_data[:, 0] == u)[0]
         items_rated_by_u = self.Y_data[ids, 1].tolist()              
         recommended_items = []
-    
+      
         for i in range(self.n_items):
             if i not in items_rated_by_u:
                 rating = self.__pred(u, i)
                 if rating > 0: 
                     recommended_items.append(i)
+                
+        
         
         return recommended_items 
 
@@ -152,13 +152,16 @@ class CF(object):
         #         print ('    Recommend item', u, 'for user(s) : ', recommended_items)
 
         print ('Recommendation: ')
-        u = 500
+        # u = 500
+        with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
+            userdata = json.load(json_file)
+            u=int(userdata['username'])
         # u = 1
-        recommended_items = self.recommend(u)
-        if self.uuCF:
-            print ('    Recommend item(s):', recommended_items, 'for user', u)
-        else: 
-            print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+            recommended_items = self.recommend(u)
+            if self.uuCF:
+                print ('    Recommend item(s):', recommended_items, 'for user', u)
+            else: 
+                print ('    Recommend item', u, 'for user(s) : ', recommended_items)
 
 
 # r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
@@ -205,14 +208,39 @@ print('rate_test',rate_test[:, :2])
 
 rs = CF(rate_train, k = 30, uuCF = 1)
 rs.fit()
-# rs.print_recommendation()
+
 n_tests = rate_test.shape[0]
 SE= 0 # squared error
 for n in range(n_tests):
     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
     SE += (pred - rate_test[n, 2])**2 
 RMSE = np.sqrt(SE/n_tests)
+with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
+    userdata = json.load(json_file)
+    u=int(userdata['username'])
+print('recommend for user: ',u)
 print ('User-user CF, RMSE =', RMSE)
+rs.print_recommendation()
+print('list',list)
+
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+sql1="delete from recommend where UserID = %s"
+cursor.execute(sql1,(int(u)))
+for i in range(0,10,1):
+    try:
+        sql = "insert into test_recommend (MovieID,UserID) values (%s,%s)"
+        cursor.execute(sql,(int(list[0][i]),int(u)))
+    except:
+        print('error')
+conn.commit()
+
+print("--- %s seconds ---" % (time.time() - start_time))
+
+
+
+
+
 
 
 # rs = CF(rate_train, k = 30, uuCF = 0)
@@ -224,5 +252,10 @@ print ('User-user CF, RMSE =', RMSE)
 #     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
 #     SE += (pred - rate_test[n, 2])**2 
 
-# RMSE = np.sqrt(SE/n_tests)s
+# RMSE = np.sqrt(SE/n_tests)
+# with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
+#     userdata = json.load(json_file)
+#     u=userdata['username']
+# print('recommend for user: ',u)
 # print ('Item-item CF, RMSE =', RMSE)
+

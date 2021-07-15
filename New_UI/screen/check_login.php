@@ -22,14 +22,14 @@
         }
         $username=$_POST['username'];
         $password=$_POST['password'];
-        $file = "../../data.json";
-        $arr = array(
-            'username'     => $_POST['username'],
-            'password'    => $_POST['password'],
-        );
+        // $file = "../../data.json";
+        // $arr = array(
+        //     'username'     => $_POST['username'],
+        //     'password'    => $_POST['password'],
+        // );
     
-        $json_string = json_encode($arr);
-        file_put_contents($file, $json_string);
+        // $json_string = json_encode($arr);
+        // file_put_contents($file, $json_string);
         if (empty($username)){
             header("Location: login.php?error=Username is required");
             exit();
@@ -47,6 +47,13 @@
                 $row = mysqli_fetch_assoc($result);
                 if($row['Username'] == $username )
                 {
+                    $file = "../../data.json";
+                    $arr = array(
+                        'username'     => $row['UserID'],
+                        'password'    => $_POST['password'],
+                    );
+                    $json_string = json_encode($arr);
+                    file_put_contents($file, $json_string);
                    $_SESSION['UserID'] = $row['UserID'];
                    $_SESSION['Username'] = $row['Username'];
                    header("Location: home.php");

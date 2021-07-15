@@ -1,8 +1,14 @@
 import pandas as pd 
 import numpy as np
-from sklearn.model_selection import train_test_split
+import math
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.model_selection import train_test_split
 from scipy import sparse 
+import json
+import time
+import pymysql
+start_time = time.time()
+list =[]
 class CF(object):
     """docstring for CF"""
     def __init__(self, Y_data, k, dist_func = cosine_similarity, uuCF = 1):
@@ -17,7 +23,7 @@ class CF(object):
     
     def add(self, new_data):
         """
-        Update Y_data matrix when new Ratings come.
+        Update Y_data matrix when new ratings come.
         For simplicity, suppose that there is no new user or item.
         """
         # ghép mảng axis = 0 đưa giá trị của mảng ghép vào đưa vào cuối 
@@ -28,28 +34,19 @@ class CF(object):
         self.Ybar_data = self.Y_data.copy()
         self.mu = np.zeros((self.n_users,))
         for n in range(self.n_users):
-            # row indices of Rating done by user n
-            # since indices need to be integers, we need to convert
             ids = np.where(users == n)[0].astype(np.int32)
-            # indices of all Ratings associated with user n
-            MovieIDs = self.Y_data[ids, 1] 
-            # and the corresponding Ratings 
-            Ratings = self.Y_data[ids, 2]
-            # take mean
-
-            m = np.mean(Ratings) 
+            # indices of all ratings associated with user n
+            item_ids = self.Y_data[ids, 1] 
+            # and the corresponding ratings 
+            ratings = self.Y_data[ids, 2]
+            m = np.mean(ratings) 
             if np.isnan(m):
                 m = 0 # to avoid empty array and nan value
             self.mu[n] = m
             # normalize
-            self.Ybar_data[ids, 2] = Ratings - self.mu[n]
+            self.Ybar_data[ids, 2] = ratings - self.mu[n]
 
-        ################################################
-        # form the Rating matrix as a sparse matrix. Sparsity is important 
-        # for both memory and computing efficiency. For example, if #user = 1M, 
-        # #item = 100k, then shape of the Rating matrix would be (100k, 1M), 
-        # you may not have enough memory to store this. Then, instead, we store 
-        # nonzeros only, and, of course, their locations.
+    
         self.Ybar = sparse.coo_matrix((self.Ybar_data[:, 2],
             (self.Ybar_data[:, 1], self.Ybar_data[:, 0])), (self.n_items, self.n_users))
         self.Ybar = self.Ybar.tocsr()
@@ -62,7 +59,7 @@ class CF(object):
     def refresh(self):
         """
         Normalize data and calculate similarity matrix again (after
-        some few Ratings added)
+        some few ratings added)
         """
         self.normalize_Y()
         self.similarity() 
@@ -70,10 +67,9 @@ class CF(object):
     def fit(self):
         self.refresh()
         
-    
     def __pred(self, u, i, normalized = 1):
         """ 
-        predict the Rating of user u for item i (normalized)
+        predict the rating of user u for item i (normalized)
         if you need the un
         """
         # Step 1: find all users who rated i
@@ -97,13 +93,12 @@ class CF(object):
     
     def pred(self, u, i, normalized = 1):
         """ 
-        predict the Rating of user u for item i (normalized)
+        predict the rating of user u for item i (normalized)
         if you need the un
         """
         if self.uuCF: return self.__pred(u, i, normalized)
         return self.__pred(i, u, normalized)
             
-    
     def recommend(self, u):
         """
         Determine all items should be recommended for user u.
@@ -116,10 +111,10 @@ class CF(object):
         recommended_items = []
         for i in range(self.n_items):
             if i not in items_rated_by_u:
-                Rating = self.__pred(u, i)
-                if Rating > 0: 
+                rating = self.__pred(u, i)
+                if rating > 0: 
                     recommended_items.append(i)
-        
+        list.append(recommended_items)
         return recommended_items 
     
     def recommend2(self, u):
@@ -135,8 +130,8 @@ class CF(object):
     
         for i in range(self.n_items):
             if i not in items_rated_by_u:
-                Rating = self.__pred(u, i)
-                if Rating > 0: 
+                rating = self.__pred(u, i)
+                if rating > 0: 
                     recommended_items.append(i)
         
         return recommended_items 
@@ -145,89 +140,111 @@ class CF(object):
         """
         print all items which should be recommended for each user 
         """
+        # print ('Recommendation: ')
+        # for u in range(self.n_users):
+        #     recommended_items = self.recommend(u)
+        #     if self.uuCF:
+        #         print ('    Recommend item(s):', recommended_items, 'for user', u)
+        #     else: 
+        #         print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+
         print ('Recommendation: ')
-        for u in range(self.n_users):
-            recommended_items = self.recommend(u)
-            if self.uuCF:
-                print ('    Recommend item(s):', recommended_items, 'for user', u)
-            else: 
-                print ('    Recommend item', u, 'for user(s) : ', recommended_items)
+        # u = 500
+        with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
+            userdata = json.load(json_file)
+            u=int(userdata['username'])
+        # u = 1
+        recommended_items = self.recommend(u)
+        if self.uuCF:
+            print ('    Recommend item(s):', recommended_items, 'for user', u)
+        else: 
+            print ('    Recommend item', u, 'for user(s) : ', recommended_items)
 
 
+# r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
+
+# ratings_base = pd.read_csv('ml-100k/ub.base', sep='\t', names=r_cols, encoding='latin-1')
+# ratings_test = pd.read_csv('ml-100k/ub.test', sep='\t', names=r_cols, encoding='latin-1')
+
+# print('type',ratings_base.dtypes)
 
 import pymysql 
 conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
 cursor = conn.cursor()
 Ratings_table = pd.read_sql_query("select * from ratings",conn)
-# data_items=Ratings_table[['UserID','MovieID','Rating','timestamp']]
 data_items=Ratings_table[['UserID','MovieID','Rating','Timestamp']]
-# print('data_items',data_items)
+Y= data_items[['UserID','MovieID','Rating','Timestamp']]
+print('type',Y.dtypes)
 
-#______________________________________________________
-
-X= data_items[['UserID','MovieID','Rating']]
+X=Y.rename(columns={"UserID":"user_id","MovieID":"movie_id","Rating":"rating","Timestamp":"unix_timestamp"})
 print('data',X)
 X_train, X_test= train_test_split(X,test_size = 0.2)
-#______________________________________________________
+Ratings_base=X_train.sort_values(by=['user_id'])
+Ratings_test=X_test.sort_values(by=['user_id'])
 
-pd.set_option('display.max_rows',1000000)
-pd.set_option('display.max_columns',5)
-# print('X train',X_train.sort_values(by=['UserID']))
-# print('X test',X_test.sort_values(by=['UserID']))
-
-
-
-
-
-#______________________________________________________
-
-Ratings_base=X_train.sort_values(by=['UserID'])
-Ratings_test=X_test.sort_values(by=['UserID'])
 
 rate_train = Ratings_base.values
 rate_test = Ratings_test.values
-#______________________________________________________
-
-
-# indices start from 0
-# rate_train[:, :2] -= 1
-# rate_test[:, :2] -= 1
-
-
-#______________________________________________________
-print('train',rate_train)
-print('test',rate_test)
-#______________________________________________________
 
 
 
 
-rs = CF(rate_train, k = 30, uuCF = 1)
+pd.set_option('display.max_rows',1000000)
+pd.set_option('display.max_columns',5)
+# rate_train = ratings_base.values
+# rate_test = ratings_test.values
+
+
+print('rate1',rate_train)
+print('rate2',rate_test)
+rate_train[:, :2] -= 1
+rate_test[:, :2] -= 1
+print('rate_train',rate_train[:, :2])
+print('rate_test',rate_test[:, :2])
+
+
+# rs = CF(rate_train, k = 30, uuCF = 1)
+# rs.fit()
+# # rs.print_recommendation()
+# n_tests = rate_test.shape[0]
+# SE= 0 # squared error
+# for n in range(n_tests):
+#     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
+#     SE += (pred - rate_test[n, 2])**2 
+# RMSE = np.sqrt(SE/n_tests)
+# print ('User-user CF, RMSE =', RMSE)
+
+
+rs = CF(rate_train, k = 30, uuCF = 0)
 rs.fit()
 
 n_tests = rate_test.shape[0]
 SE = 0 # squared error
 for n in range(n_tests):
-    pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 1)
+    pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
     SE += (pred - rate_test[n, 2])**2 
 
 RMSE = np.sqrt(SE/n_tests)
-print ('User-user CF, RMSE =', RMSE)
+with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
+    userdata = json.load(json_file)
+    u=int(userdata['username'])
+print('recommend for user: ',u)
+print ('Item-item CF, RMSE =', RMSE)
+rs.print_recommendation()
+print('list',list)
+
+conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
+cursor = conn.cursor()
+sql1="delete from recommend where MovieID = %s"
+cursor.execute(sql1,(int(u)))
+for i in range(0,10,1):
+    try:
+        sql = "insert into test_recommend (MovieID,UserID) values (%s,%s)"
+        cursor.execute(sql,(int(u),int(list[0][i])))
+    except:
+        print('error')
+conn.commit()
 
 
 
-
-
-
-
-# rs = CF(rate_train, k = 30, uuCF = 0)
-# rs.fit()
-
-# n_tests = rate_test.shape[0]
-# SE = 0 # squared error
-# for n in range(n_tests):
-#     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
-#     SE += (pred - rate_test[n, 2])**2 
-
-# RMSE = np.sqrt(SE/n_tests)
-# print ('Item-item CF, RMSE =', RMSE)
+print("--- %s seconds ---" % (time.time() - start_time))

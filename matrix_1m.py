@@ -5,6 +5,8 @@ from sklearn.metrics import mean_squared_error
 from pandas import DataFrame
 import pymysql
 import json
+import time
+start_time = time.time()
 conn =pymysql.connect(host="localhost",user="root",passwd="",database="movielens")
 cursor = conn.cursor()
 list_id = pd.read_sql_query("select UserID from users order by UserID asc ",conn)
@@ -41,9 +43,6 @@ number_of_rows_X_test = len (X_test_update.index)
 matrix_fact = KernelMF(n_epochs=20, n_factors=100, verbose=1, lr=0.001, reg=0.005)
 
 matrix_fact.fit(X_train_initial, y_train_initial)
-
-
-
 
 # print('matrix update users:') ////////////////////////////
 matrix_fact.update_users(
@@ -104,13 +103,24 @@ cursor = conn.cursor()
 # cursor.execute(sql1,(int(user)))
 # for i in range(0,10,1):
 #     try:
-#         sql = "insert into recommend_test (MovieID,UserID) values (%s,%s)"
+#         sql = "insert into recommend (MovieID,UserID) values (%s,%s)"
 #         cursor.execute(sql,(int(output_result.loc[i,'item_id']),int(output_result.loc[i,'user_id'])))
 #     except:
 #         print('error')
 # conn.commit()
 
 
+sql1="delete from recommend where UserID = %s"
+cursor.execute(sql1,(int(user)))
+for i in range(0,10,1):
+    try:
+        sql = "insert into test_recommend (MovieID,UserID) values (%s,%s)"
+        cursor.execute(sql,(int(output_result.loc[i,'item_id']),int(output_result.loc[i,'user_id'])))
+    except:
+        print('error')
+conn.commit()
+
+print("--- %s seconds ---" % (time.time() - start_time))
     # except:
     #     print('error')
 
