@@ -174,15 +174,19 @@ rs.fit()
 
 n_tests = rate_test.shape[0]
 SE= 0 # squared error
+AE= 0
 for n in range(n_tests):
     pred = rs.pred(rate_test[n, 0], rate_test[n, 1], normalized = 0)
     SE += (pred - rate_test[n, 2])**2 
+    AE += abs(pred - rate_test[n, 2])
+MAE = AE/n_tests
 RMSE = np.sqrt(SE/n_tests)
 with open('/Applications/XAMPP/xamppfiles/htdocs/KLTN/data.json') as json_file:
     userdata = json.load(json_file)
     u=int(userdata['username'])
 print('recommend for user: ',u)
 print ('User-user CF, RMSE =', RMSE)
+print ('User-user CF, MAE =', MAE)
 rs.print_recommendation()
 # print('list',list)
 
